@@ -62,6 +62,17 @@ describe('Test for Business API endpoints', () => {
         });
     });
   });
+  describe('/GET Business', () => {
+    it('It should get reviews of a Business', (done) => {
+      chai.request(myRoute)
+        .get('/businesses/0/reviews')
+        .end((err, res) => {
+          res.should.have.status(200);
+          assert.isArray(res.body, 'The response is Array');
+          done();
+        });
+    });
+  });
   describe('/PUT Business', () => {
     it('It should update a Business', (done) => {
       chai.request(myRoute)

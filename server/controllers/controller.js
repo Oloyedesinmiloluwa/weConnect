@@ -63,6 +63,16 @@ export default class appController {
     res.status(201).send(item);
   }
   /**
+   * This gets all reviews for a business
+   * @param {Object} req - client request Object
+   * @param {Object} res - Server response Object
+   * @returns {Array} Reviews
+   */
+  static getReviews(req, res) {
+    const item = appController.selectBusiness(req);
+    return res.status(200).send(item.review);
+  }
+  /**
    * This updates an existing business
    * @param {Object} req - client request Object
    * @param {Object} res - Server response Object
