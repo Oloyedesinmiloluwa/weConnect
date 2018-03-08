@@ -24,6 +24,15 @@ export default class appController {
     return id;
   }
   /**
+   * This gets all businesses which can be sorted by location or category
+   * @param {Object} req - client request Object
+   * @param {Object} res - Server response Object
+   * @returns {Array} Business
+   */
+  static getAll(req, res) {
+    return res.status(200).send(data);
+  }
+  /**
    * This adds a business to the database.
    * @param {Object} req - client request Object
    * @param {Object} res - Server response Object
