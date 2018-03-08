@@ -30,6 +30,30 @@ describe('Test for Business API endpoints', () => {
           done();
         });
     });
+    it('It should sign in user', (done) => {
+      chai.request(myRoute)
+        .post('/auth/login')
+        .send({
+          email: 'sinmiloluwasunday@yahoo.com', password: 'test'
+        })
+        .end((err, res) => {
+          res.should.have.status(201);
+          assert.equal(res.body.message, 'Successfully logged in');
+          done();
+        });
+    });
+    it('It should not sign in user with wrong credentials', (done) => {
+      chai.request(myRoute)
+        .post('/auth/login')
+        .send({
+          email: 'sinmiloluwasunday@yahoo.com', password: 'test ko test ni'
+        })
+        .end((err, res) => {
+          res.should.have.status(401);
+          assert.equal(res.body.message, 'Invalid username or password');
+          done();
+        });
+    });
   });
   describe('/POST Business', () => {
     it('It should register Business', (done) => {

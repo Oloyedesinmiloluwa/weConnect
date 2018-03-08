@@ -134,6 +134,19 @@ export default class appController {
     return res.status(201).send({ message: 'Successfully created an account' });
   }
   /**
+   * This validates the credentials of a user to allow or disallow login.
+   * @param {Object} req - client request Object
+   * @param {Object} res - Server response Object
+   * @returns {Object} Success or failure message
+   */
+  static login(req, res) {
+    const item = user.filter(currentUser => currentUser.email === req.body.email);
+    if (req.body.password === item[0].password) {
+      return res.status(201).send({ message: 'Successfully logged in' });
+    }
+    return res.status(401).send({ message: 'Invalid username or password' });
+  }
+  /**
    * This destroys an existing business.
    * @param {Object} req - client request Object
    * @param {Object} res - Server response Object

@@ -17,4 +17,6 @@ myRoute.route('/businesses/:businessId/reviews')
   .post(appController.postReview);
 myRoute.route('/auth/signup')
   .post(appController.signUp);
+myRoute.route('/auth/login')
+  .post(appController.login);
 export default myRoute;
