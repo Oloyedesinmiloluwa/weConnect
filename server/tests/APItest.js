@@ -39,6 +39,29 @@ describe('Test for Business API endpoints', () => {
         });
     });
   });
+  describe('/POST Review', () => {
+    it('It should post review for a Business', (done) => {
+      chai.request(myRoute)
+        .post('/businesses/0/reviews')
+        .send({
+          review: 'this is very great',
+        })
+        .end((err, res) => {
+          res.should.have.status(201);
+          assert.equal(res.body.review.length, 2);
+          done();
+        });
+    });
+    it('It should NOT process an invalid Businesses ID', (done) => {
+      chai.request(myRoute)
+        .put('/businesses/tuuy')
+        .end((err, res) => {
+          res.should.have.status(404);
+          res.body.message.should.be.eql('Invalid ID');
+          done();
+        });
+    });
+  });
   describe('/PUT Business', () => {
     it('It should update a Business', (done) => {
       chai.request(myRoute)

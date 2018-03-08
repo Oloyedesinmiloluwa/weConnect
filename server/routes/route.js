@@ -10,4 +10,6 @@ myRoute.route('/businesses')
 myRoute.route('/businesses/:businessId')
   .put(appController.update)
   .delete(appController.delete);
+myRoute.route('/businesses/:businessId/reviews')
+  .post(appController.postReview);
 export default myRoute;

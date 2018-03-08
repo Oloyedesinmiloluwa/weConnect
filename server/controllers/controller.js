@@ -49,6 +49,20 @@ export default class appController {
     res.status(201).send(data[data.length - 1]);
   }
   /**
+   * This posts review to a business.
+   * @param {Object} req - client request Object
+   * @param {Object} res - Server response Object
+   * @returns {Object} posted review
+   */
+  static postReview(req, res) {
+    if (appController.selectBusiness(req) === null) return res.status(404).send({ message: 'Invalid ID' });
+    const item = appController.selectBusiness(req);
+    item.review.push(req.body.review);
+    data.splice(appController.formatParamId(req), 1, item);
+    res.setHeader('Location', `businesses/${appController.formatParamId(req)}${'/reviews'}`);
+    res.status(201).send(item);
+  }
+  /**
    * This updates an existing business
    * @param {Object} req - client request Object
    * @param {Object} res - Server response Object
