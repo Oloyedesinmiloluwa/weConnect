@@ -48,4 +48,16 @@ export default class appController {
     res.setHeader('Location', location);
     res.status(201).send(data[data.length - 1]);
   }
+  /**
+   * This updates an existing business
+   * @param {Object} req - client request Object
+   * @param {Object} res - Server response Object
+   * @returns {Object} updated business
+   */
+  static update(req, res) {
+    if (appController.selectBusiness(req) === null) return res.status(404).send({ message: 'Invalid ID' });
+    const item = appController.selectBusiness(req);
+    Object.assign(item, req.body);
+    res.status(200).send(item);
+  }
 }

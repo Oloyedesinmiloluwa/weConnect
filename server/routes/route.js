@@ -7,4 +7,6 @@ myRoute.use(bodyParser.json());
 myRoute.use(bodyParser.urlencoded({ extended: false }));
 myRoute.route('/businesses')
   .post(appController.post);
+myRoute.route('/businesses/:businessId')
+  .put(appController.update);
 export default myRoute;

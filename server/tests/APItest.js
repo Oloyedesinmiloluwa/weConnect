@@ -39,4 +39,36 @@ describe('Test for Business API endpoints', () => {
         });
     });
   });
+  describe('/PUT Business', () => {
+    it('It should update a Business', (done) => {
+      chai.request(myRoute)
+        .put('/businesses/0')
+        .send({
+          name: 'our business',
+          address: 'Ajah, lagos state',
+        })
+        .end((err, res) => {
+          res.should.have.status(200);
+          done();
+        });
+    });
+    it('It should NOT process an invalid Businesses ID', (done) => {
+      chai.request(myRoute)
+        .put('/businesses/tuuy')
+        .end((err, res) => {
+          res.should.have.status(404);
+          res.body.message.should.be.eql('Invalid ID');
+          done();
+        });
+    });
+    it('It should NOT process a non-existing Businesses ID', (done) => {
+      chai.request(myRoute)
+        .put('/businesses/9000000')
+        .end((err, res) => {
+          res.should.have.status(404);
+          res.body.message.should.be.eql('Invalid ID');
+          done();
+        });
+    });
+  });
 });
