@@ -1,6 +1,38 @@
 h1,h2,h3 {
     color:blue;
 }
+#homeh1 {
+    padding-top: 9%;
+}
+#homerow {
+    width: 50%;
+}
+#homeh5 {
+    margin-top:30px;
+}
+#footer {
+    margin-right:30%;
+    color:white;
+}
+#brand_link {
+    font-family: Calibri;
+    font-size:28pt;
+}
+#home_signin {
+    margin: 0 10px 0 30px;
+}
+#homediv {
+    padding:10px;
+    margin-bottom:50px;
+    background-image:url(images/puzzle.jpg);
+    height:450px;
+}
+#register_span {
+    width: 60%;
+}
+#registerh4 {
+    margin-top:15px;
+}
 div.row {
     padding-top: 20px;
 }
