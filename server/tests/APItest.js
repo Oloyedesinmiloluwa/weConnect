@@ -81,6 +81,24 @@ describe('Test for Business API endpoints', () => {
           done();
         });
     });
+    it('It should get a single Business', (done) => {
+      chai.request(myRoute)
+        .get('/businesses/0')
+        .end((err, res) => {
+          res.should.have.status(200);
+          res.body.id.should.eql(0);
+          assert.isObject(res.body, 'The response is object');
+          done();
+        });
+    });
+    it('It should return Not found for an invalid Id', (done) => {
+      chai.request(myRoute)
+        .get('/businesses/900000')
+        .end((err, res) => {
+          res.should.have.status(404);
+          done();
+        });
+    });
   });
   describe('/PUT Business', () => {
     it('It should update a Business', (done) => {

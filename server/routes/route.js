@@ -9,6 +9,7 @@ myRoute.route('/businesses')
   .get(appController.getAll)
   .post(appController.post);
 myRoute.route('/businesses/:businessId')
+  .get(appController.getOne)
   .put(appController.update)
   .delete(appController.delete);
 myRoute.route('/businesses/:businessId/reviews')

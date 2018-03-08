@@ -33,6 +33,16 @@ export default class appController {
     return res.status(200).send(data);
   }
   /**
+   * This method gets a single business.
+   * @param {Object} req - client request Object
+   * @param {Object} res - Server response Object
+   * @returns {Object} business
+   */
+  static getOne(req, res) {
+    if (appController.selectBusiness(req) === null) return res.status(404).send({ message: 'Invalid ID' });
+    res.status(200).send(appController.selectBusiness(req));
+  }
+  /**
    * This adds a business to the database.
    * @param {Object} req - client request Object
    * @param {Object} res - Server response Object
