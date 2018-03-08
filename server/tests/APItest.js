@@ -5,6 +5,32 @@ import myRoute from '../routes/route';
 const should = chai.should();
 chai.use(chaiHttp);
 describe('Test for Business API endpoints', () => {
+  describe('/POST User', () => {
+    it('It should add new user', (done) => {
+      chai.request(myRoute)
+        .post('/auth/signup')
+        .send({
+          firstName: 'Grace', lastName: 'Love', email: 'sinmiloluwasunday@yahoo.com', password: 'test'
+        })
+        .end((err, res) => {
+          res.should.have.status(201);
+          assert.equal(res.body.message, 'Successfully created an account');
+          done();
+        });
+    });
+    it('It should not add user missing required field', (done) => {
+      chai.request(myRoute)
+        .post('/auth/signup')
+        .send({
+          lastName: 'Love', email: 'sinmiloluwasunday@yahoo.com', password: 'test'
+        })
+        .end((err, res) => {
+          res.should.have.status(400);
+          res.body.message.should.be.eql('All fields are required');
+          done();
+        });
+    });
+  });
   describe('/POST Business', () => {
     it('It should register Business', (done) => {
       chai.request(myRoute)

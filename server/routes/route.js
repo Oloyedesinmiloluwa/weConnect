@@ -15,4 +15,6 @@ myRoute.route('/businesses/:businessId')
 myRoute.route('/businesses/:businessId/reviews')
   .get(appController.getReviews)
   .post(appController.postReview);
+myRoute.route('/auth/signup')
+  .post(appController.signUp);
 export default myRoute;

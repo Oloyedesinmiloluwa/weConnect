@@ -112,6 +112,28 @@ export default class appController {
     res.status(200).send(item);
   }
   /**
+   * This creates a new account for a user
+   * @param {Object} req - client request Object
+   * @param {Object} res - Server response Object
+   * @returns {Object} Success or failure message
+   */
+  static signUp(req, res) {
+    if (!req.body.firstName || !req.body.lastName || !req.body.email || !req.body.password) {
+      return res.status(400).send({ message: 'All fields are required' });
+    }
+    // req.body.id = user[user.length - 1].id + 1;
+    const newUser = {
+      id: user[user.length - 1].id + 1,
+      // name: req.body.name,
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
+      email: req.body.email,
+      password: req.body.password,
+    };
+    user.push(newUser);
+    return res.status(201).send({ message: 'Successfully created an account' });
+  }
+  /**
    * This destroys an existing business.
    * @param {Object} req - client request Object
    * @param {Object} res - Server response Object
