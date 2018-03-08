@@ -83,6 +83,17 @@ describe('Test for Business API endpoints', () => {
           done();
         });
     });
+    it('It should get only Businesses in a chosen category', (done) => {
+      chai.request(myRoute)
+        .get('/businesses?category=Agriculture')
+        .end((err, res) => {
+          res.should.have.status(200);
+          assert.isArray(res.body, 'The response is type Array');
+          assert.equal(res.body[0].category, 'Agriculture');
+          assert.notEqual(res.body[1].category, 'Education');
+          done();
+        });
+    });
     it('It should get reviews of a Business', (done) => {
       chai.request(myRoute)
         .get('/businesses/0/reviews')
