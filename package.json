@@ -4,8 +4,9 @@
   "description": "A project for connecting businesses with individuals",
   "main": "index.js",
   "scripts": {
-    "test": "mocha ./server/tests/APItest.js --compilers js:babel-register --exit",
-    "start": "nodemon server/index.js --exec babel-node"
+    "test": "nyc mocha ./server/tests/APItest.js --compilers js:babel-register --exit",
+    "start": "nodemon server/index.js --exec babel-node",
+    "coverage": "nyc npm test && nyc report --reporter=text-lcov | coveralls"
   },
   "repository": {
     "type": "git",
@@ -27,12 +28,14 @@
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
-    "babel-preset-env": "^1.6.1",    
+    "babel-preset-env": "^1.6.1",
+    "coveralls": "^3.0.0",
     "eslint": "^4.18.2",
     "eslint-config-airbnb": "^16.1.0",
     "eslint-plugin-import": "^2.9.0",
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-react": "^7.7.0",
-    "nodemon": "^1.17.1"
+    "nodemon": "^1.17.1",
+    "nyc": "^11.4.1"
   }
 }
