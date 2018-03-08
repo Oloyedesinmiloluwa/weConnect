@@ -72,6 +72,17 @@ describe('Test for Business API endpoints', () => {
           done();
         });
     });
+    it('It should get only Businesses in a chosen location', (done) => {
+      chai.request(myRoute)
+        .get('/businesses?location=Lagos')
+        .end((err, res) => {
+          res.should.have.status(200);
+          assert.isArray(res.body, 'The response is type Array');
+          assert.equal(res.body[0].location, 'Lagos');
+          assert.notEqual(res.body[1].location, 'Jos');
+          done();
+        });
+    });
     it('It should get reviews of a Business', (done) => {
       chai.request(myRoute)
         .get('/businesses/0/reviews')

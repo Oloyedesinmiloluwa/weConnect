@@ -30,6 +30,10 @@ export default class appController {
    * @returns {Array} Business
    */
   static getAll(req, res) {
+    if (req.query.location) {
+      const filteredData = data.filter(business => business.location === req.query.location);
+      return res.status(200).send(filteredData);
+    }
     return res.status(200).send(data);
   }
   /**
