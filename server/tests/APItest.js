@@ -71,4 +71,32 @@ describe('Test for Business API endpoints', () => {
         });
     });
   });
+  describe('/delete Business', () => {
+    it('It should delete an existing Business', (done) => {
+      chai.request(myRoute)
+        .delete('/businesses/0')
+        .end((err, res) => {
+          res.should.have.status(204);
+          done();
+        });
+    });
+    it('It should NOT process a non-existing Businesses ID', (done) => {
+      chai.request(myRoute)
+        .delete('/businesses/900000')
+        .end((err, res) => {
+          res.should.have.status(404);
+          res.body.message.should.be.eql('Invalid ID');
+          done();
+        });
+    });
+    it('It should NOT process a negative valued Businesses ID', (done) => {
+      chai.request(myRoute)
+        .delete('/businesses/-900000')
+        .end((err, res) => {
+          res.should.have.status(404);
+          res.body.message.should.be.eql('Invalid ID');
+          done();
+        });
+    });
+  });
 });

@@ -60,4 +60,15 @@ export default class appController {
     Object.assign(item, req.body);
     res.status(200).send(item);
   }
+  /**
+   * This destroys an existing business.
+   * @param {Object} req - client request Object
+   * @param {Object} res - Server response Object
+   * @returns {null} nothing after deletion
+   */
+  static delete(req, res) {
+    if (appController.selectBusiness(req) === null) return res.status(404).send({ message: 'Invalid ID' });
+    data.splice(appController.formatParamId, 1);
+    return res.sendStatus(204);
+  }
 }
