@@ -4,7 +4,7 @@
   "description": "A project for connecting businesses with individuals",
   "main": "index.js",
   "scripts": {
-    "test": "nyc mocha ./server/tests/APItest.js --compilers js:babel-register --exit",
+    "test": "nyc mocha ./server/src/tests/APItest.js --compilers js:babel-register --exit",
     "start:dev": "nodemon server/index.js --exec babel-node",
     "build": "babel ./server/src -d ./server/dist",
     "start": "node server/dist/index.js",
