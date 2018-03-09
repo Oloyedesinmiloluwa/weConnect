@@ -5,7 +5,10 @@
   "main": "index.js",
   "scripts": {
     "test": "nyc mocha ./server/tests/APItest.js --compilers js:babel-register --exit",
-    "start": "nodemon server/index.js --exec babel-node",
+    "start:dev": "nodemon server/index.js --exec babel-node",
+    "build": "babel ./server/src -d ./server/dist",
+    "start": "node server/dist/index.js",
+    "heroku-postbuild": "npm run build",
     "coverage": "nyc npm test && nyc report --reporter=text-lcov | coveralls"
   },
   "repository": {
