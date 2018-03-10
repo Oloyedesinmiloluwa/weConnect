@@ -62,11 +62,14 @@ export default class appController {
     }
     const business = {
       id: data[data.length - 1].id + 1,
-      // name: req.body.name,
+      name: req.body.name,
       description: req.body.description,
+      email: req.body.email,
+      phone: req.body.phone,
       location: req.body.location,
       address: req.body.address,
       category: req.body.category,
+      image: req.body.image,
       review: [],
     };
     data.push(business);
@@ -79,7 +82,7 @@ export default class appController {
    * This posts review to a business.
    * @param {Object} req - client request Object
    * @param {Object} res - Server response Object
-   * @returns {Object} posted review
+   * @returns {Object} reviewed business
    */
   static postReview(req, res) {
     if (appController.selectBusiness(req) === null) return res.status(404).send({ message: 'Invalid ID' });
