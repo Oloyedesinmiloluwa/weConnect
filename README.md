@@ -91,3 +91,4 @@ businesses they have interacted with.
 <br/>
 
 You can access the app here https://weconnect-com.herokuapp.com/
+And you can have access to the API documentation here https://weconnect-com.herokuapp.com/api-docs
