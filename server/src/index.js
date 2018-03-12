@@ -4,7 +4,7 @@ import http from 'http';
 import logger from 'morgan';
 import swaggerUi from 'swagger-ui-express';
 import route from './routes/route';
-import swaggerDocument from './swagger.json';
+import swaggerDocument from './swagger';
 
 const port = parseInt(process.env.PORT, 10) || 8000;
 // Set up the express app
