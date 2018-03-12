@@ -1,6 +1,9 @@
 {
   "name": "weconnect",
   "version": "1.0.0",
+  "engines": {
+    "node": "8.9.1"
+  },
   "description": "A project for connecting businesses with individuals",
   "main": "index.js",
   "scripts": {
