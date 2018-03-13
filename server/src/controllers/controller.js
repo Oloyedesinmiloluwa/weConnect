@@ -47,6 +47,7 @@ export default class appController {
    * @returns {Object} business
    */
   static getOne(req, res) {
+    // Tests if the business requested exists
     if (appController.selectBusiness(req) === null) return res.status(404).send({ message: 'Invalid ID' });
     res.status(200).send(appController.selectBusiness(req));
   }
@@ -74,8 +75,8 @@ export default class appController {
     };
     data.push(business);
 
-    const location = `businesses/${data[data.length - 1].id}`;
-    res.setHeader('Location', location);
+    const location = `businesses/${data[data.length - 1].id}`; // stores the location of the new resource
+    res.setHeader('Location', location); // stores the location of the new resource
     res.status(201).send(data[data.length - 1]);
   }
   /**
@@ -109,6 +110,7 @@ export default class appController {
    * @returns {Object} updated business
    */
   static update(req, res) {
+    // Tests if the business requested exists first
     if (appController.selectBusiness(req) === null) return res.status(404).send({ message: 'Invalid ID' });
     const item = appController.selectBusiness(req);
     Object.assign(item, req.body);
@@ -143,6 +145,7 @@ export default class appController {
    * @returns {Object} Success or failure message
    */
   static login(req, res) {
+    // searches if the email exists and stores it as item
     const item = user.filter(currentUser => currentUser.email === req.body.email);
     if (req.body.password === item[0].password) {
       return res.status(201).send({ message: 'Successfully logged in' });
@@ -156,6 +159,7 @@ export default class appController {
    * @returns {null} nothing after deletion
    */
   static delete(req, res) {
+    // Tests if the business requested exists
     if (appController.selectBusiness(req) === null) return res.status(404).send({ message: 'Invalid ID' });
     data.splice(appController.formatParamId, 1);
     return res.sendStatus(204);
