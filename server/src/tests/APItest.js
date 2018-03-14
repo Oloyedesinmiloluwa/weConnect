@@ -44,7 +44,19 @@ describe('Test for Business API endpoints', () => {
           done();
         });
     });
-    it('It should not sign in user with wrong credentials', (done) => {
+    it('It should not sign in user with an unexisting username ', (done) => {
+      chai.request(myRoute)
+        .post('/auth/login')
+        .send({
+          email: '111@yahoo.com', password: 'test'
+        })
+        .end((err, res) => {
+          res.should.have.status(401);
+          assert.equal(res.body.message, 'Invalid username');
+          done();
+        });
+    });
+    it('It should not sign in user with a wrong password ', (done) => {
       chai.request(myRoute)
         .post('/auth/login')
         .send({
@@ -92,10 +104,27 @@ describe('Test for Business API endpoints', () => {
           done();
         });
     });
-    it('It should not register Business if missing required field', (done) => {
+    it('It should not register Business if missing name', (done) => {
       chai.request(myRoute)
         .post('/businesses')
         .send({
+          description: 'we are good',
+          address: 'lagos, lagos state',
+          location: 'Lagos',
+          category: 'Agriculture',
+          email: 'sinmiloluwasunday@yahoo.com',
+        })
+        .end((err, res) => {
+          res.should.have.status(400);
+          res.body.message.should.be.eql('Business name and description required');
+          done();
+        });
+    });
+    it('It should not register Business if missing description', (done) => {
+      chai.request(myRoute)
+        .post('/businesses')
+        .send({
+          name: 'Trump Tower',
           address: 'lagos, lagos state',
           location: 'Lagos',
           category: 'Agriculture',
@@ -127,6 +156,29 @@ describe('Test for Business API endpoints', () => {
         .end((err, res) => {
           res.should.have.status(404);
           res.body.message.should.be.eql('Invalid ID');
+          done();
+        });
+    });
+    it('It should NOT process an empty review field', (done) => {
+      chai.request(myRoute)
+        .post('/businesses/1/reviews')
+        .send({
+          review: ''
+        })
+        .end((err, res) => {
+          res.should.have.status(400);
+          res.body.message.should.be.eql('Review field cannot be empty');
+          done();
+        });
+    });
+    it('It should NOT process a review field that is undefined', (done) => {
+      chai.request(myRoute)
+        .post('/businesses/1/reviews')
+        .send({
+        })
+        .end((err, res) => {
+          res.should.have.status(400);
+          res.body.message.should.be.eql('Review field cannot be empty');
           done();
         });
     });

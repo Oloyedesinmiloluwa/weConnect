@@ -5,7 +5,7 @@ import logger from 'morgan';
 import dotenv from 'dotenv';
 import swaggerUi from 'swagger-ui-express';
 import route from './routes/route';
-import swaggerDocument from './swagger.json';
+import swaggerDocument from './swagger';
 
 
 const port = parseInt(process.env.PORT, 10) || 8000;

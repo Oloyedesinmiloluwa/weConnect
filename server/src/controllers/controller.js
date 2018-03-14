@@ -6,27 +6,6 @@ import db from '../models/index';
  * Class representing the controller for the application.
  */
 export default class appController {
-  // /**
-  //  * This selects a particular business from database when called withing other methods.
-  //  * @param {Object} req - The client request object.
-  //  * @param {Object} res - The server response object.
-  //  * @returns {Object} The selected business
-  //  */
-  // static selectBusiness(req, res) {
-  //   // const id = parseInt(req.params.businessId, 10);
-  //   // if (!data[id]) return null;
-  //   // return data[id];
-
-  //   return db.Business
-  //     .findById(appController.formatParamId(req, res))
-  //     .then((business) => {
-  //       if (!business) {
-  //         return null;
-  //       }
-  //       return business; // res.status(200).send(business);
-  //     })
-  //     .catch(error => res.status(400).send(error));
-  // }
   /**
    * This formats req.params.id to an integer
    * @param {Object} req - client request Object
@@ -54,8 +33,6 @@ export default class appController {
         .catch(error => res.send(400).send(error));
     }
     if (req.query.location) {
-      // const filteredData = data.filter(business => business.location === req.query.location);
-      // return res.status(200).send(filteredData);
       return db.Business
         .findAll({
           where: { location: req.query.location },
@@ -98,7 +75,6 @@ export default class appController {
       return res.status(400).send({ message: 'Business name and description required' });
     }
     return db.Business.create({
-      // id: req.body.id,
       name: req.body.name,
       description: req.body.description,
       email: req.body.email,
@@ -115,23 +91,6 @@ export default class appController {
         res.status(201).send(business);
       })
       .catch(error => res.status(400).send(error));
-    // const business = {
-    //   // id: data[data.length - 1].id + 1,
-    //   name: req.body.name,
-    //   description: req.body.description,
-    //   email: req.body.email,
-    //   phone: req.body.phone,
-    //   location: req.body.location,
-    //   address: req.body.address,
-    //   category: req.body.category,
-    //   image: req.body.image,
-    //   review: [],
-    // };
-    // data.push(business);
-
-    // const location = `businesses/${data[data.length - 1].id}`;
-    // res.setHeader('Location', location);
-    // res.status(201).send(data[data.length - 1]);
   }
   /**
    * This posts review to a business.
@@ -140,13 +99,7 @@ export default class appController {
    * @returns {Object} reviewed business
    */
   static postReview(req, res) {
-    // if (appController.selectBusiness(req) === null) return res.status(404).send({ message: 'Invalid ID' });
-    // const item = appController.selectBusiness(req);
-    // item.review.push(req.body.review);
-    // data.splice(appController.formatParamId(req), 1, item);
-    // res.setHeader('Location', `businesses/${appController.formatParamId(req)}${'/reviews'}`);
-    // res.status(201).send(item);
-    if (req.body.review === undefined) return res.status(400).send({ message: 'Review field cannot be empty'});
+    if (req.body.review === '' || req.body.review === undefined) return res.status(400).send({ message: 'Review field cannot be empty' });
     return db.Business
       .findById(appController.formatParamId(req, res))
       .then((business) => {
@@ -158,7 +111,7 @@ export default class appController {
         business.review.push(req.body.review);
         business
           // .update(req.body.review, { fields: ['review'] })
-          .update({ review: business.review }) // { where: { id: req.params.id } 
+          .update({ review: business.review }) // { where: { id: req.params.id }
           .then(() => {
             // db.User
             //   .findById(business.userId)
@@ -229,20 +182,6 @@ export default class appController {
    * @returns {Object} Success or failure message
    */
   static signUp(req, res) {
-    // if (!req.body.firstName || !req.body.lastName || !req.body.email || !req.body.password) {
-    //   return res.status(400).send({ message: 'All fields are required' });
-    // }
-    // // req.body.id = user[user.length - 1].id + 1;
-    // const newUser = {
-    //   id: user[user.length - 1].id + 1,
-    //   // name: req.body.name,
-    //   firstName: req.body.firstName,
-    //   lastName: req.body.lastName,
-    //   email: req.body.email,
-    //   password: req.body.password,
-    // };
-    // user.push(newUser);
-    // return res.status(201).send({ message: 'Successfully created an account' });
     const hashedPassword = bcrypt.hashSync(req.body.password, 8);
     if (!req.body.firstName || !req.body.lastName || !req.body.email || !req.body.password) {
       return res.status(400).send({ message: 'All fields are required' });
@@ -255,7 +194,6 @@ export default class appController {
         password: hashedPassword,
         profilePicture: req.body.profilePicture || '',
       })
-      // .then(user => res.status(201).send(user))
       .then((user) => {
         const {
           id, email, firstName, lastName
@@ -275,11 +213,6 @@ export default class appController {
    * @returns {Object} Success or failure message
    */
   static login(req, res) {
-    // const item = user.filter(currentUser => currentUser.email === req.body.email);
-    // if (req.body.password === item[0].password) {
-    //   return res.status(201).send({ message: 'Successfully logged in' });
-    // }
-    // return res.status(401).send({ message: 'Invalid username or password' });
     return db.User
       .find({
         where: {
@@ -316,9 +249,6 @@ export default class appController {
    * @returns {null} nothing after deletion
    */
   static delete(req, res) {
-    // if (appController.selectBusiness(req) === null) return res.status(404).send({ message: 'Invalid ID' });
-    // data.splice(appController.formatParamId, 1);
-    // return res.sendStatus(204);
     return db.Business
       .findById(appController.formatParamId(req, res))
       .then((business) => {
