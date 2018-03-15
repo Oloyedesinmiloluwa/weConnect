@@ -7,7 +7,7 @@ env:
 services:
   - postgresql
 install: 
-  - npm install -g sequelize
+  - npm install -g sequelize-cli
   - npm install
 
 before_script:
