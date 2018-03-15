@@ -5,7 +5,7 @@ module.exports = {
     title: 'WEconnect',
     description: 'WeConnect provides a platform that brings businesses and individuals together. This platform creates awareness for businesses and gives the Users the ability to write reviews about the businesses they have interacted with'
   },
-  host: 'https://weconnect-com.herokuapp.com',
+  host: 'weconnect-com.herokuapp.com',
   basePath: '/api/v1/',
   tags: [
     {
