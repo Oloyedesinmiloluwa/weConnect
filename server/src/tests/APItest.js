@@ -36,7 +36,7 @@ describe('Test for Business API endpoints', () => {
       chai.request(myRoute)
         .post('/auth/login')
         .send({
-          email: 'sinmiloluwasunday@yahoo.com', password: 'test'
+          email: 'sinmi@yahoo.com', password: 'tester'
         })
         .end((err, res) => {
           res.should.have.status(201);
@@ -83,7 +83,7 @@ describe('Test for Business API endpoints', () => {
         })
         .end((err, res) => {
           res.should.have.status(201);
-          assert.equal(res.body.id, 1);
+          assert.equal(res.body.id, 2);
           done();
         });
     });
@@ -100,7 +100,7 @@ describe('Test for Business API endpoints', () => {
         })
         .end((err, res) => {
           res.should.have.status(201);
-          assert.equal(res.body.id, 2);
+          assert.equal(res.body.id, 3);
           done();
         });
     });
@@ -146,7 +146,7 @@ describe('Test for Business API endpoints', () => {
         })
         .end((err, res) => {
           res.should.have.status(201);
-          assert.equal(res.body.review.length, 1);
+          assert.equal(res.body.review.length, 2);
           done();
         });
     });
@@ -324,6 +324,76 @@ describe('Test for Business API endpoints', () => {
         .end((err, res) => {
           res.should.have.status(200);
           assert.equal(res.body.message, 'Account Deleted Successfully');
+          done();
+        });
+    });
+  });
+  describe('/GET Users', () => {
+    it('It should not get all users if not admin', (done) => {
+      chai.request(myRoute)
+        .get('/users')
+        .end((err, res) => {
+          res.should.have.status(403);
+          assert.equal(res.body.message, 'Unauthorized User');
+          done();
+        });
+    });
+  });
+  describe('/LOG OUT User', () => {
+    it('It should logout user', (done) => {
+      chai.request(myRoute)
+        .post('/auth/logout')
+        .end((err, res) => {
+          res.should.have.status(200);
+          assert.equal(res.body.message, 'Successfully logged out');
+          done();
+        });
+    });
+  });
+  // Test for after log out
+  describe('/LOG IN User', () => {
+    it('It should login another user', (done) => {
+      chai.request(myRoute)
+        .post('/auth/login')
+        .send({
+          email: 'sinmiloluwasunday@yahoo.com', password: 'test'
+        })
+        .end((err, res) => {
+          res.should.have.status(201);
+          assert.equal(res.body.message, 'Successfully logged in');
+          done();
+        });
+    });
+    it('non-author should not be able to delete business', (done) => {
+      chai.request(myRoute)
+        .delete('/businesses/2')
+        .end((err, res) => {
+          res.should.have.status(403);
+          done();
+        });
+    });
+    it('User should not be able to update another\'s Business', (done) => {
+      chai.request(myRoute)
+        .put('/businesses/2')
+        .send({
+          name: 'our business',
+          address: 'Ajah, lagos state',
+        })
+        .end((err, res) => {
+          res.should.have.status(403);
+          res.body.message.should.be.eql('Unauthorized User');
+          done();
+        });
+    });
+    it('User should not be able to reset another\'s password', (done) => {
+      chai.request(myRoute)
+        .put('/users/2')
+        .send({
+          newPassword: 'testtest'
+        })
+        .end((err, res) => {
+          res.should.have.status(403);
+          assert.equal(res.body.message, 'Unauthorized User');
           done();
         });
     });

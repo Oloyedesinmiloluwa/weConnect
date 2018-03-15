@@ -165,7 +165,7 @@ export default class appController {
             message: 'Invalid ID',
           });
         }
-        if (business.userId !== req.decoded.id) return res.status(403).send('Unauthorized User');
+        if (business.userId !== req.decoded.id) return res.status(403).send({ message: 'Unauthorized User' });
         return business
           .update(req.body, { fields: Object.keys(req.body) })
           .then(() => {
@@ -280,7 +280,7 @@ export default class appController {
             message: 'Invalid ID',
           });
         }
-        if (user.email !== req.decoded.email) return res.status(403).send('Unauthorized User');
+        if (user.email !== req.decoded.email) return res.status(403).send({ message: 'Unauthorized User' });
         return user
           .update({ password: req.body.newPassword })
           .then(() => res.status(200).send({ message: 'Password successfully changed' }))
@@ -318,6 +318,7 @@ export default class appController {
    * @returns {null} nothing after deletion
    */
   static getUsers(req, res) {
+    if (req.decoded.email !== 'admin@weconnect.com') return res.status(403).send({ message: 'Unauthorized User'});
     return db.User
       .all()
       .then(users => res.status(200).send(users))

@@ -21,13 +21,13 @@ myRoute.route('/auth/signup')
 myRoute.route('/auth/login')
   .post(appController.login);
 myRoute.route('/users')
-  .get(appController.getUsers); // remove later
+  .get(authWare, appController.getUsers); // remove later
 myRoute.route('/users/:userId')
   .put(authWare, appController.resetPassword)
   .delete(authWare, appController.deleteUser);
 myRoute.route('/auth/logout')
   .post((req, res) => {
     process.env.token = null;
-    res.sendStatus(200);
+    res.status(200).send({ message: 'Successfully logged out' });
   });
 export default myRoute;
