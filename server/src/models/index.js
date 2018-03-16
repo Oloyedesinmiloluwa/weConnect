@@ -1,12 +1,8 @@
-// const fs = require('fs');
-// const path = require('path');
-// const Sequelize = require('sequelize');
 import Sequelize from 'sequelize';
 import path from 'path';
 import fs from 'fs';
 import configjs from '../config/config';
 
-process.env.NODE_ENV = 'test';
 const basename = path.basename(__filename);
 // const basename = path.basename(module.filename);
 const env = process.env.NODE_ENV || 'development';
@@ -16,6 +12,7 @@ const db = {};
 let sequelize;
 if (config.use_env_variable) {
   sequelize = new Sequelize(process.env[config.use_env_variable], {
+    console.log('jhi came');
     dialect: 'postgres', protocol: 'postgres', dialectOption: { SSL: true, native: true }, logging: true
   });
 } else {
