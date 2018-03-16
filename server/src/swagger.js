@@ -14,7 +14,7 @@ module.exports = {
     }
   ],
   schemes: [
-    'http'
+    'https'
   ],
   consumes: [
     'object', 'application/json'
