@@ -12,7 +12,6 @@ const db = {};
 let sequelize;
 if (config.use_env_variable) {
   sequelize = new Sequelize(process.env[config.use_env_variable], {
-    console.log('jhi came');
     dialect: 'postgres', protocol: 'postgres', dialectOption: { SSL: true, native: true }, logging: true
   });
 } else {
