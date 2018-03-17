@@ -20,6 +20,9 @@ module.exports = {
       password: {
         type: Sequelize.STRING
       },
+      notify: {
+        type: Sequelize.BOOLEAN
+      },
       profilePicture: {
         type: Sequelize.STRING
       },

@@ -21,7 +21,7 @@ myRoute.route('/auth/signup')
 myRoute.route('/auth/login')
   .post(appController.login);
 myRoute.route('/users')
-  .get(authWare, appController.getUsers); // remove later
+  .get(authWare, appController.getUsers);
 myRoute.route('/users/:userId')
   .put(authWare, appController.resetPassword)
   .delete(authWare, appController.deleteUser);

@@ -8,6 +8,9 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false
     },
+    notify: {
+      type: DataTypes.BOOLEAN
+    },
     email: {
       type: DataTypes.STRING,
       allowNull: false,

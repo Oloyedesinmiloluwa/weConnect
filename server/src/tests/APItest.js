@@ -4,7 +4,7 @@ import dotenv from 'dotenv';
 import myRoute from '../routes/route';
 
 dotenv.config();
-const should = chai.should();
+chai.should();
 chai.use(chaiHttp);
 describe('Test for Business API endpoints', () => {
   describe('/POST User', () => {
@@ -12,7 +12,7 @@ describe('Test for Business API endpoints', () => {
       chai.request(myRoute)
         .post('/auth/signup')
         .send({
-          firstName: 'Grace', lastName: 'Love', email: 'sinmiloluwasunday@yahoo.com', password: 'test'
+          firstName: 'Grace', lastName: 'Love', email: 'sinmi@yahoo.com', password: 'test', notify: true
         })
         .end((err, res) => {
           res.should.have.status(201);
@@ -24,7 +24,7 @@ describe('Test for Business API endpoints', () => {
       chai.request(myRoute)
         .post('/auth/signup')
         .send({
-          lastName: 'Love', email: 'sinmiloluwasunday@yahoo.com', password: 'test'
+          lastName: 'Love', email: 'sinmi@yahoo.com', password: 'test'
         })
         .end((err, res) => {
           res.should.have.status(400);
@@ -36,7 +36,7 @@ describe('Test for Business API endpoints', () => {
       chai.request(myRoute)
         .post('/auth/login')
         .send({
-          email: 'sinmi@yahoo.com', password: 'tester'
+          email:'sinmiloluwasunday@yahoo.com', password: 'tester'
         })
         .end((err, res) => {
           res.should.have.status(201);
@@ -60,7 +60,7 @@ describe('Test for Business API endpoints', () => {
       chai.request(myRoute)
         .post('/auth/login')
         .send({
-          email: 'sinmiloluwasunday@yahoo.com', password: 'testko'
+          email: 'sinmi@yahoo.com', password: 'testko'
         })
         .end((err, res) => {
           res.should.have.status(401);
@@ -79,7 +79,7 @@ describe('Test for Business API endpoints', () => {
           address: 'lagos, lagos state',
           location: 'Lagos',
           category: 'Agriculture',
-          email: 'sinmiloluwasunday@yahoo.com',
+          email: 'sinmi@yahoo.com',
         })
         .end((err, res) => {
           res.should.have.status(201);
@@ -96,7 +96,7 @@ describe('Test for Business API endpoints', () => {
           address: 'oyo, oyo state',
           location: 'Oyo',
           category: 'Education',
-          email: 'sinmiloluwasunday@yahoo.com',
+          email: 'sinmi@yahoo.com',
         })
         .end((err, res) => {
           res.should.have.status(201);
@@ -112,7 +112,7 @@ describe('Test for Business API endpoints', () => {
           address: 'lagos, lagos state',
           location: 'Lagos',
           category: 'Agriculture',
-          email: 'sinmiloluwasunday@yahoo.com',
+          email: 'sinmi@yahoo.com',
         })
         .end((err, res) => {
           res.should.have.status(400);
@@ -128,7 +128,7 @@ describe('Test for Business API endpoints', () => {
           address: 'lagos, lagos state',
           location: 'Lagos',
           category: 'Agriculture',
-          email: 'sinmiloluwasunday@yahoo.com',
+          email: 'sinmi@yahoo.com',
         })
         .end((err, res) => {
           res.should.have.status(400);
@@ -146,7 +146,7 @@ describe('Test for Business API endpoints', () => {
         })
         .end((err, res) => {
           res.should.have.status(201);
-          assert.equal(res.body.review.length, 2);
+          assert.equal(res.body.business.review.length, 2);
           done();
         });
     });
@@ -182,6 +182,30 @@ describe('Test for Business API endpoints', () => {
           done();
         });
     });
+    it('It should not send email to user if not requested', (done) => {
+      chai.request(myRoute)
+        .post('/businesses/1/reviews')
+        .send({
+          review: 'never contact me'
+        })
+        .end((err, res) => {
+          res.should.have.status(201);
+          res.body.mailReport.should.be.eql('Email not sent');
+          done();
+        });
+    });
+    it('It should send email to user if requested', (done) => {
+      chai.request(myRoute)
+        .post('/businesses/1/reviews')
+        .send({
+          review: 'please contact me'
+        })
+        .end((err, res) => {
+          res.should.have.status(201);
+          // res.body.mailReport.should.be.eql('Email Sent');
+          done();
+        });
+    });
   });
   describe('/GET Business', () => {
     it('It should get all Businesses', (done) => {
@@ -200,7 +224,7 @@ describe('Test for Business API endpoints', () => {
           res.should.have.status(200);
           assert.isArray(res.body, 'The response is type Array');
           assert.equal(res.body[0].location, 'Lagos');
-          // assert.notEqual(res.body[2].location, 'Oyo');
+          assert.notEqual(res.body[1].location, 'Oyo');
           done();
         });
     });
@@ -211,7 +235,7 @@ describe('Test for Business API endpoints', () => {
           res.should.have.status(200);
           assert.isArray(res.body, 'The response is type Array');
           assert.equal(res.body[0].category, 'Agriculture');
-          // assert.notEqual(res.body[2].category, 'Education');
+          assert.notEqual(res.body[1].category, 'Education');
           done();
         });
     });
@@ -259,6 +283,10 @@ describe('Test for Business API endpoints', () => {
     it('It should NOT process an invalid Businesses ID', (done) => {
       chai.request(myRoute)
         .put('/businesses/tuuy')
+        .send({
+          name: 'our business',
+          address: 'Ajah, lagos state',
+        })
         .end((err, res) => {
           res.should.have.status(404);
           res.body.message.should.be.eql('Invalid ID');
@@ -268,9 +296,27 @@ describe('Test for Business API endpoints', () => {
     it('It should NOT process a non-existing Businesses ID', (done) => {
       chai.request(myRoute)
         .put('/businesses/9000000')
+        .send({
+          name: 'our business',
+          address: 'Ajah, lagos state',
+        })
         .end((err, res) => {
           res.should.have.status(404);
           res.body.message.should.be.eql('Invalid ID');
+          done();
+        });
+    });
+    it('It should NOT update if review field is present', (done) => {
+      chai.request(myRoute)
+        .put('/businesses/1')
+        .send({
+          name: 'our business',
+          address: 'Ajah, lagos state',
+          review: 'This is great'
+        })
+        .end((err, res) => {
+          res.should.have.status(400);
+          res.body.message.should.be.eql('pls remove review from request body');
           done();
         });
     });
@@ -303,7 +349,7 @@ describe('Test for Business API endpoints', () => {
         });
     });
   });
-  describe('/PUT User', () => {
+  describe('RESET PASSWORD', () => {
     it('It should reset user\'s password', (done) => {
       chai.request(myRoute)
         .put('/users/1')
@@ -313,6 +359,41 @@ describe('Test for Business API endpoints', () => {
         .end((err, res) => {
           res.should.have.status(200);
           assert.equal(res.body.message, 'Password successfully changed');
+          done();
+        });
+    });
+    it('It should not reset password if empty', (done) => {
+      chai.request(myRoute)
+        .put('/users/1')
+        .send({
+          newPassword: ''
+        })
+        .end((err, res) => {
+          res.should.have.status(400);
+          assert.equal(res.body.message, 'Password must have a value');
+          done();
+        });
+    });
+    it('It should not reset password if undefined', (done) => {
+      chai.request(myRoute)
+        .put('/users/1')
+        .send({
+        })
+        .end((err, res) => {
+          res.should.have.status(400);
+          assert.equal(res.body.message, 'Password must have a value');
+          done();
+        });
+    });
+    it('It should not reset password if empty', (done) => {
+      chai.request(myRoute)
+        .put('/users/1')
+        .send({
+          newPassword: 'testtest'
+        })
+        .end((err, res) => {
+          res.should.have.status(400);
+          assert.equal(res.body.message, 'Password must be new');
           done();
         });
     });
@@ -328,24 +409,52 @@ describe('Test for Business API endpoints', () => {
         });
     });
   });
-  describe('/GET Users', () => {
-    it('It should not get all users if not admin', (done) => {
-      chai.request(myRoute)
-        .get('/users')
-        .end((err, res) => {
-          res.should.have.status(403);
-          assert.equal(res.body.message, 'Unauthorized User');
-          done();
-        });
-    });
-  });
-  describe('/LOG OUT User', () => {
+  describe('/Unauthorized Acess', () => {
     it('It should logout user', (done) => {
       chai.request(myRoute)
         .post('/auth/logout')
         .end((err, res) => {
           res.should.have.status(200);
           assert.equal(res.body.message, 'Successfully logged out');
+          done();
+        });
+    });
+    it('It should not register Business if not authenticated', (done) => {
+      chai.request(myRoute)
+        .post('/businesses')
+        .send({
+          name: 'last business',
+          description: 'We are very good at helping everyone',
+          address: 'oyo, oyo state',
+          location: 'Oyo',
+          category: 'Education',
+          email: 'sinmi@yahoo.com',
+        })
+        .end((err, res) => {
+          res.should.have.status(401);
+          assert.equal(res.body.message, 'Authentication failed');
+          done();
+        });
+    });
+    it('Should not delete Business if not authenticated', (done) => {
+      chai.request(myRoute)
+        .delete('/businesses/2')
+        .end((err, res) => {
+          res.should.have.status(401);
+          assert.equal(res.body.message, 'Authentication failed');
+          done();
+        });
+    });
+    it('Should not update Business if not authenticated', (done) => {
+      chai.request(myRoute)
+        .put('/businesses/2')
+        .send({
+          name: 'our business',
+          address: 'Ajah, lagos state',
+        })
+        .end((err, res) => {
+          res.should.have.status(401);
+          assert.equal(res.body.message, 'Authentication failed');
           done();
         });
     });
@@ -356,7 +465,7 @@ describe('Test for Business API endpoints', () => {
       chai.request(myRoute)
         .post('/auth/login')
         .send({
-          email: 'sinmiloluwasunday@yahoo.com', password: 'test'
+          email: 'sinmi@yahoo.com', password: 'test'
         })
         .end((err, res) => {
           res.should.have.status(201);
@@ -394,6 +503,38 @@ describe('Test for Business API endpoints', () => {
         .end((err, res) => {
           res.should.have.status(403);
           assert.equal(res.body.message, 'Unauthorized User');
+          done();
+        });
+    });
+  });
+  describe('/GET Users', () => {
+    it('It should not get all users if not admin', (done) => {
+      chai.request(myRoute)
+        .get('/users')
+        .end((err, res) => {
+          res.should.have.status(403);
+          assert.equal(res.body.message, 'Unauthorized User');
+          done();
+        });
+    });
+     it('It should sign in admin', (done) => {
+      chai.request(myRoute)
+        .post('/auth/login')
+        .send({
+          email:'admin@weconnect.com', password: 'admin'
+        })
+        .end((err, res) => {
+          res.should.have.status(201);
+          assert.equal(res.body.message, 'Successfully logged in');
+          done();
+        });
+      });
+    it('It should get all users if admin', (done) => {
+      chai.request(myRoute)
+        .get('/users')
+        .end((err, res) => {
+          res.should.have.status(200);
+          assert.isArray(res.body, 'The response is type Array');
           done();
         });
     });
