@@ -65,7 +65,7 @@ export default class appController {
         }
         return res.status(200).send(business);
       })
-      .catch(() => res.status(404).send({ message: 'Invalid ID' }));
+      .catch(error => res.status(400).send(error));
   }
   /**
    * This adds a business to the database.
@@ -138,7 +138,7 @@ export default class appController {
           })
           .catch(error => res.status(400).send(error));
       })
-      .catch(() => res.status(404).send({ message: 'Invalid ID' }));
+      .catch(error => res.status(400).send(error));
   }
   /**
    * This gets all reviews for a business
@@ -157,7 +157,7 @@ export default class appController {
         }
         return res.status(200).send(business.review);
       })
-      .catch(() => res.status(404).send({ message: 'Invalid ID' }));
+      .catch(error => res.status(400).send(error));
   }
   /**
    * This updates an existing business
@@ -183,7 +183,7 @@ export default class appController {
           .then(() => {
             res.status(200).send(business);
           })
-          .catch(() => res.status(404).send({ message: 'Invalid ID' }));
+          .catch(error => res.status(400).send(error));
       })
       .catch(error => res.status(400).send(error));
   }
