@@ -8,7 +8,14 @@
 WeConnect provides a platform that brings businesses and individuals together. This platform
 creates awareness for businesses and gives the users the ability to write reviews about the
 businesses they have interacted with.
-
+## Installation
+* Prerequisite
+  * Git
+  * Node 8.9.1
+  * NPM 5.5.1
+  * Progresql
+  To contribute to this project, clone this repository in your local machine. Create a <code>.env</code>file that is like <code>.env.sample</code>. Afterward run "npm install" and run "npm run start:dev" for a quick start. Or you may build first, using "npm run build" then run "npm start".
+If you only want to access the completed work, you will find the link to the hosted work at the bottom of this file. Then you don't have to clone this repository!
 ## How it works 
 * Users can:
   * Create an account
@@ -24,7 +31,17 @@ businesses they have interacted with.
     * Remove their business
     * Reset password
     * delete account
-    
+## Technologies
+  * Nodejs(ES6)
+  * Express
+  * Bootstrap
+  * Postgresql
+  * Sequelize
+  * Babel
+## Test
+  Mocha was used as the testing framework with chai assertion library
+  * You can run test after installation using <code>npm run test</code>
+  * For continuous integration; you can make use of the ones with their badges at the top of this file. e.g. TravisCI, Coveralls etc <hr>
 
 <h3>ENDPOINTS</h3>
 <hr>
@@ -94,5 +111,7 @@ businesses they have interacted with.
 </table>
 <br/>
 
+## Author
+Oloyede Sinmiloluwa <hr>
 You can access the app here https://weconnect-com.herokuapp.com/
 And you can have access to the API documentation here https://weconnect-com.herokuapp.com/api-docs
