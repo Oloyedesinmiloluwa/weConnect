@@ -1,5 +1,12 @@
 node_modules
+<<<<<<< HEAD
 bootstrap-4.0.0-dist
 .nyc_output
 .env
 server
+=======
+.nyc_output/
+server/dist
+.env
+template
+>>>>>>> server-develop
