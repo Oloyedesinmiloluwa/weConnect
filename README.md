@@ -1,6 +1,6 @@
 # weConnect
-[![Build Status](https://travis-ci.org/Oloyedesinmiloluwa/weConnect.svg?branch=server-develop)](https://travis-ci.org/Oloyedesinmiloluwa/weConnect)
-[![Coverage Status](https://coveralls.io/repos/github/Oloyedesinmiloluwa/weConnect/badge.svg?branch=server-develop)](https://coveralls.io/github/Oloyedesinmiloluwa/weConnect?branch=server-develop)
+[![Build Status](https://travis-ci.org/Oloyedesinmiloluwa/weConnect.svg?branch=db-server-develop)](https://travis-ci.org/Oloyedesinmiloluwa/weConnect)
+[![Coverage Status](https://coveralls.io/repos/github/Oloyedesinmiloluwa/weConnect/badge.svg?branch=db-server-develop)](https://coveralls.io/github/Oloyedesinmiloluwa/weConnect?branch=db-server-develop)
 [![Maintainability](https://api.codeclimate.com/v1/badges/f986c9b2b380d5bc7e92/maintainability)](https://codeclimate.com/github/Oloyedesinmiloluwa/weConnect/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/f986c9b2b380d5bc7e92/test_coverage)](https://codeclimate.com/github/Oloyedesinmiloluwa/weConnect/test_coverage)
 
@@ -11,15 +11,19 @@ businesses they have interacted with.
 
 ## How it works 
 * Users can:
+  * Create an account
   * Post review for a business
   * Get all the reviews for a business
   * See registered businesses
   * See businesses in a preffered location
   * See businesses in a preffered category
 * Authenticated users can:
+    * Login to their account
     * Register a business       
     * Update their business profile
     * Remove their business
+    * Reset password
+    * delete account
     
 
 <h3>ENDPOINTS</h3>

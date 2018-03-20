@@ -2,6 +2,7 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import http from 'http';
 import logger from 'morgan';
+import dotenv from 'dotenv';
 import swaggerUi from 'swagger-ui-express';
 import route from './routes/route';
 import swaggerDocument from './swagger';
@@ -21,6 +22,7 @@ app.get('*', (req, res) => res.status(404).send({
   message: 'Not Found',
 }));
 app.set('port', port);
+dotenv.config();
 const server = http.createServer(app);
 server.listen(port);
 module.exports = app;
