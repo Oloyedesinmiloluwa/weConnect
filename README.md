@@ -1,6 +1,6 @@
 # weConnect
-[![Build Status](https://travis-ci.org/Oloyedesinmiloluwa/weConnect.svg?branch=db-server-develop)](https://travis-ci.org/Oloyedesinmiloluwa/weConnect)
-[![Coverage Status](https://coveralls.io/repos/github/Oloyedesinmiloluwa/weConnect/badge.svg?branch=db-server-develop)](https://coveralls.io/github/Oloyedesinmiloluwa/weConnect?branch=db-server-develop)
+[![Build Status](https://travis-ci.org/Oloyedesinmiloluwa/weConnect.svg?branch=develop)](https://travis-ci.org/Oloyedesinmiloluwa/weConnect)
+[![Coverage Status](https://coveralls.io/repos/github/Oloyedesinmiloluwa/weConnect/badge.svg?branch=develop)](https://coveralls.io/github/Oloyedesinmiloluwa/weConnect?branch=develop)
 [![Maintainability](https://api.codeclimate.com/v1/badges/f986c9b2b380d5bc7e92/maintainability)](https://codeclimate.com/github/Oloyedesinmiloluwa/weConnect/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/f986c9b2b380d5bc7e92/test_coverage)](https://codeclimate.com/github/Oloyedesinmiloluwa/weConnect/test_coverage)
 
@@ -12,9 +12,9 @@ businesses they have interacted with.
 * Prerequisite
   * Git
   * Node 8.9.1
-  * NPM 5.5.1
-  * Progresql
-  To contribute to this project, clone this repository in your local machine. Create a <code>.env</code>file that is like <code>.env.sample</code>. Afterward run "npm install" and run "npm run start:dev" for a quick start. Or you may build first, using "npm run build" then run "npm start".
+  * Npm 5.5.1
+  * Postgresql
+  To contribute to this project, clone this repository in your local machine. Create a <code>.env</code>file that is like <code>.env.sample</code>. Afterward run <code> npm install </code> and run <code>npm run start:dev</code> for a quick start. Or you may build first, using <code>npm run build</code> then run <code>npm start</code>.
 If you only want to access the completed work, you will find the link to the hosted work at the bottom of this file. Then you don't have to clone this repository!
 ## How it works 
 * Users can:
@@ -41,7 +41,7 @@ If you only want to access the completed work, you will find the link to the hos
 ## Test
   Mocha was used as the testing framework with chai assertion library
   * You can run test after installation using <code>npm run test</code>
-  * For continuous integration; you can make use of the ones with their badges at the top of this file. e.g. TravisCI, Coveralls etc <hr>
+  * For continuous integration; you can make use of the ones with their badges at the top of this file. e.g. TravisCI, Coveralls etc
 
 <h3>ENDPOINTS</h3>
 <hr>
@@ -112,6 +112,7 @@ If you only want to access the completed work, you will find the link to the hos
 <br/>
 
 ## Author
-Oloyede Sinmiloluwa <hr>
+Oloyede Sinmiloluwa
+##
 You can access the app here https://weconnect-com.herokuapp.com/
 And you can have access to the API documentation here https://weconnect-com.herokuapp.com/api-docs
