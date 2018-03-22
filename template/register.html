@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" shrink-to-fit=no">
 <!-- Bootstrap -->
 <link href="bootstrap-4.0.0-dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
     <link href="main.css" rel="stylesheet" />
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page
@@ -16,188 +17,156 @@ via file:// -->
 <![endif]-->
 </head>
 <body>      
-    <div id="homediv">
-      <nav class="navbar navbar-primary justify-content-between">
-        <a id="brand_link" href="index.html" class="navbar-brand text-primary">WeConnect</a>
-        <form class="form-inline">
-          <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="search" />
-          <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
-          <button id="home_signin" class="btn btn-outline-primary my-2 my-sm-0">Home</button>
-          <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Sign Out</button>
-        </form>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <a class="navbar-brand" href="index.html">Weconnect</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+          aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+    
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="index.html">Home</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Category
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item " href="index.html?category=agriculture">Agriculture</a>
+                <a class="dropdown-item " href="index.html?category=technology">Technology</a>
+                <a class="dropdown-item " href="index.html?category=commerce">Commerce</a>
+                <a class="dropdown-item " href="index.html?category=health">Health</a>
+                <a class="dropdown-item " href="index.html?category=engineering">Engineering</a>
+                <a class="dropdown-item " href="index.html?category=fashion">Fashion</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item " href="index.html">All</a>
+              </div>
+            </li>
+          </ul>
+          <form class="form-inline my-2 my-lg-0">
+            <!-- <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"> -->
+            <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Sign Out</button>
+          </form>
+        </div>
       </nav>
-      <h1 id="homeh1" class="text-center"> Welcome to Weconnect!</h1>
-      <h3 class="text-center">We connect businesses with individuals, Register with us</h3>
-    </div>
     
+      <h4 class="text-center" id="registerh4"> Welcome Sinmiloluwa!</h3>
+        <p class="text-center">You can register or update your business here</p>
     <div class="container">
-      <span id="register_span" class="row mx-auto">
-        <h4 id="registerh4" class="text-center">You have not registered any business</h4>
-        <button class="btn btn-primary custom">Register</button>
-      </span>
-      <div id="homerow">
+          <div class="card" >
+              <h5 class="card-header text-primary">Business Information</h5>
+          <div class="register_card">
     
-        <form>
+            <form>
+              <div class="form-group row">
+                <label for="bname" class="col-md-4 col-form-label">Business Name</label>
+                <div class="col-md-8">
+                  <input type="text" class="form-control" id="bname" placeholder="Business Name">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="description" class="col-md-4 col-form-label">Description</label>
+                <div class="col-md-8">
+                  <input type="text" class="form-control" id="description" placeholder="Description">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="address" class="col-md-4 col-form-label">Address</label>
+                <div class="col-md-8">
+                  <input type="text" class="form-control" id="address" placeholder="Address">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="phone" class="col-md-4 col-form-label">Phone</label>
+                <div class="col-md-8">
+                  <input type="text" class="form-control" id="phone" placeholder="08030000001">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="inputEmail3" class="col-md-4 col-form-label">Email</label>
+                <div class="col-md-8">
+                  <input type="email" class="form-control" id="inputEmail3" placeholder="Email">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="website" class="col-md-4 col-form-label">Website</label>
+                <div class="col-md-8">
+                  <input type="text" class="form-control" id="website" placeholder="www.yourbusiness.com">
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="inputState" class="col-md-4 col-form-label">Category</label>
+                <div class=" col-md-8">
+                  <select id="inputState" class="form-control">
+                    <option selected>Choose...</option>
+                    <option>Agriculture</option>
+                    <option>Commerce</option>
+                    <option>Manufacturing</option>
+                    <option>Engineering</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group row">
+                  <label for="inputState" class="col-md-4 col-form-label">Location</label>
+                  <div class=" col-md-8">
+                    <select id="inputState" class="form-control">
+                      <option selected>Choose...</option>
+                      <option>Oyo</option>
+                      <option>Lagos</option>
+                      <option>Ibadan</option>
+                      <option>Jos</option>
+                    </select>
+                  </div>
+                </div>
+              <div class="form-group row">
+                <div class="offset-md-1 col-md-8">
+                  <button type="submit" class="btn btn-outline-primary register_custom">Register New</button>
+                  <button type="button" class="btn btn-outline-primary register_custom">View Business</button>
+                  <button type="update" class="btn btn-outline-primary register_custom" disabled>Update</button>
+                </div>
+              </div>
+            </form>
+          </div>
+          <h5 class="card-header text-primary">Account Information</h5>
+          <div class="register_card">
+          <form>
           <div class="form-group row">
-            <label for="bname" class="col-md-4 col-form-label">Business Name</label>
-            <div class="col-md-8">
-              <input type="text" class="form-control" id="bname" placeholder="Business Name">
+              <label for="fname" class="col-sm-5 col-md-4 col-form-label">First name:</label>
+              <div class="col-sm-7 col-md-8">
+                <p class="col-form-label" id="fname">Sinmiloluwa</p>
+              </div>
+            </div>
+          <div class="form-group row">
+              <label for="lname" class="col-sm-5 col-md-4 col-form-label">Last name:</label>
+              <div class="col-sm-7 col-md-8">
+                <p class="col-form-label" id="lname">Michael</p>
+              </div>
+            </div>
+          <div class="form-group row">
+            <label for="inputEmail3" class="col-sm-5 col-md-4 col-form-label">Email:</label>
+            <div class="col-sm-7 col-md-8">
+              <p class="col-form-label" id="inputEmail3">myemail@yahoo.com</p>
             </div>
           </div>
           <div class="form-group row">
-            <label for="description" class="col-md-4 col-form-label">Description</label>
-            <div class="col-md-8">
-              <input type="text" class="form-control" id="description" placeholder="Description">
+              <label for="inputState2" class="col-sm-5 col-md-4 col-form-label">Notification</label>
+              <div class="col-md-4">
+                <select id="inputState2" class="form-control">
+                  <option selected>False</option>
+                  <option>True</option>
+                </select>
+              <p> Whether to get email notification when there is a new review for your business</p> 
+              </div>
             </div>
-          </div>
           <div class="form-group row">
-            <label for="address" class="col-md-4 col-form-label">Address</label>
-            <div class="col-md-8">
-              <input type="text" class="form-control" id="address" placeholder="Address">
+              <div class="offset-md-4 col-md-8">
+                <button type="button" class="btn btn-outline-primary">Reset Password</button>
+              </div>
             </div>
+          </form>
           </div>
-          <div class="form-group row">
-            <label for="phone" class="col-md-4 col-form-label">Phone</label>
-            <div class="col-md-8">
-              <input type="text" class="form-control" id="phone" placeholder="08030000001">
-            </div>
-          </div>
-          <div class="form-group row">
-            <label for="inputEmail3" class="col-md-4 col-form-label">Email</label>
-            <div class="col-md-8">
-              <input type="email" class="form-control" id="inputEmail3" placeholder="Email">
-            </div>
-          </div>
-          <div class="form-group row">
-            <label for="website" class="col-md-4 col-form-label">Website</label>
-            <div class="col-md-8">
-              <input type="text" class="form-control" id="website" placeholder="www.yourbusiness.com">
-            </div>
-          </div>
-          <div class="form-group row">
-            <label for="inputState" class="col-md-4 col-form-label">Sector</label>
-            <div class=" col-md-8">
-              <select id="inputState" class="form-control">
-                <option selected>Choose...</option>
-                <option>Agriculture</option>
-                <option>Commerce</option>
-                <option>Manufacturing</option>
-                <option>Engineering</option>
-              </select>
-            </div>
-          </div>
-          <div class="form-group row">
-            <div class="offset-md-4 col-md-8">
-              <button type="submit" class="btn btn-success">Submit</button>
-              <button type="update" class="btn btn-success" disabled>Update</button>
-            </div>
-          </div>
-        </form>
-      </div>
-      <h5> Businesses in your location</h5>
-      <div class="row">
-        <div class="card-deck">
-          <div class="card">
-              <a href="detail.html">
-            <img class="card-img-top" src="images/6.JPG" alt="Card image cap">
-              </a>
-            <div class="card-body">
-              <h5 class="card-title">Konga</h5>
-              <p class="card-text">We as a company buys and sells goods, makes products, and provides services for everybody.</p>
-              <p class="card-text">
-                <small class="text-muted">Established since 1960</small>
-              </p>
-            </div>
-          </div>
-          <div class="card">
-              <a href="detail.html">
-            <img class="card-img-top" src="images/farm2.JPG" alt="Card image cap">
-              </a>
-            <div class="card-body">
-              <h5 class="card-title">Jumia</h5>
-              <p class="card-text">We as a company buys and sells goods, makes products, and provides services for everybody. The best!</p>
-              <p class="card-text">
-                <small class="text-muted">Established since 1960</small>
-              </p>
-            </div>
-          </div>
-          <div class="card">
-              <a href="detail.html">
-            <img class="card-img-top" src="images/farm.JPG" alt="Card image cap">
-              </a>
-            <div class="card-body">
-              <h5 class="card-title">McDonald</h5>
-              <p class="card-text">We as a company buys and sells goods, makes products, and provides services for everybody. The best!</p>
-              <p class="card-text">
-                <small class="text-muted">Established since 1960</small>
-              </p>
-            </div>
-          </div>
-          <div class="card">
-              <a href="detail.html">
-            <img class="card-img-top" src="images/4.JPG" alt="Card image cap">
-              </a>
-            <div class="card-body">
-              <h5 class="card-title">St. Mike School</h5>
-              <p class="card-text">We as a company buys and sells goods, makes products, and provides services for everybody. The best!</p>
-              <p class="card-text">
-                <small class="text-muted">Established since 1960</small>
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="card-deck">
-          <div class="card">
-              <a href="detail.html">
-            <img class="card-img-top" src="images/4.JPG" alt="Card image cap">
-              </a>
-            <div class="card-body">
-              <h5 class="card-title">Konga</h5>
-              <p class="card-text">We as a company buys and sells goods, makes products, and provides services for everybody.</p>
-              <p class="card-text">
-                <small class="text-muted">Established since 1960</small>
-              </p>
-            </div>
-          </div>
-          <div class="card">
-              <a href="detail.html">
-            <img class="card-img-top" src="images/2.JPG" alt="Card image cap">
-              </a>
-            <div class="card-body">
-              <h5 class="card-title">Jumia</h5>
-              <p class="card-text">We as a company buys and sells goods, makes products, and provides services for everybody. The best!</p>
-              <p class="card-text">
-                <small class="text-muted">Established since 1960</small>
-              </p>
-            </div>
-          </div>
-          <div class="card">
-              <a href="detail.html">
-            <img class="card-img-top" src="images/3.JPG" alt="Card image cap">
-              </a>
-            <div class="card-body">
-              <h5 class="card-title">McDonald</h5>
-              <p class="card-text">We as a company buys and sells goods, makes products, and provides services for everybody. The best!</p>
-              <p class="card-text">
-                <small class="text-muted">Established since 1960</small>
-              </p>
-            </div>
-          </div>
-          <div class="card">
-              <a href="detail.html">
-            <img class="card-img-top" src="images/4.JPG" alt="Card image cap">
-              </a>
-            <div class="card-body">
-              <h5 class="card-title">St. Mike School</h5>
-              <p class="card-text">We as a company buys and sells goods, makes products, and provides services for everybody. The best!</p>
-              <p class="card-text">
-                <small class="text-muted">Established since 1960</small>
-              </p>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
     
@@ -205,9 +174,11 @@ via file:// -->
 <script src="https://code.jquery.com/jquery.js"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="bootstrap-4.0.0-dist/js/bootstrap.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </body>
 </html>
-<footer class="text-white">
-    <a id="footer" href="#">Documentation</a>
+<hr>
+<footer class="text-primary">
+    <a id="footer" href="https://weconnect-com.herokuapp.com/api-docs">Documentation</a>
     Powered&nbsp;by&nbsp;Weconnect&nbsp;Team&nbsp;&copy;2018
   </footer>

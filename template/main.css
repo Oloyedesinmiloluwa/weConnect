@@ -5,21 +5,27 @@ h1,h2,h3 {
     padding-top: 9%;
 }
 #homerow {
-    width: 50%;
+    width: 60%;
 }
 #homeh5 {
     margin-top:30px;
 }
 #footer {
     margin-right:30%;
-    color:white;
+    /* color:white;*/
 }
 #brand_link {
     font-family: Calibri;
     font-size:28pt;
 }
+#homeform {
+    margin-top: 5%;
+}
 #home_signin {
     margin: 0 10px 0 30px;
+}
+#home_register_btn {
+    margin-left: 30px;
 }
 #homediv {
     padding:10px;
@@ -31,16 +37,29 @@ h1,h2,h3 {
     width: 60%;
 }
 #registerh4 {
-    margin-top:15px;
+    margin-top:30px;
+}
+.register_card {
+    padding-left: 20px;
+    width: 60%;
+}
+.card_custom {
+    padding-bottom: 10px;
+    /* min-height: 80%; */
+    /* border: solid royalblue; */
+    /* width: 80%; */
 }
 div.row {
-    padding-top: 20px;
+    padding-top: 10px;
 }
 button.custom {
     margin: 15px;
     padding: 0px;
     width:100px;
     height: 30px;
+}
+button.register_custom {
+    margin: 10px;
 }
 input.custom {
     border-radius: 5px;
@@ -49,9 +68,8 @@ input.custom {
     background: lightblue;
 }
 footer {
-    outline: solid rgb(144, 144, 216);
     padding: 10px;
-    background: rgb(6, 88, 110);
+    background: white;
     margin-top:40px;
     height:50px;
 }
