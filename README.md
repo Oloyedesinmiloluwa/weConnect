@@ -13,8 +13,8 @@ businesses they have interacted with.
   * Git
   * Node 8.9.1
   * NPM 5.5.1
-  * Progresql
-  To contribute to this project, clone this repository in your local machine. Create a <code>.env</code>file that is like <code>.env.sample</code>. Afterward run "npm install" and run "npm run start:dev" for a quick start. Or you may build first, using "npm run build" then run "npm start".
+  * Progresql<br>
+  Ensure you have the prerequisites install then you can clone this repository in your local machine.Then, create a <code>.env</code>file that is like <code>.env.sample</code>. Afterward run <code> npm install </code> and run <code>npm run start:dev</code> for a quick start. Or you may build first, using <code>npm run build</code> then run <code>npm start</code>.
 If you only want to access the completed work, you will find the link to the hosted work at the bottom of this file. Then you don't have to clone this repository!
 ## How it works 
 * Users can:
@@ -31,6 +31,10 @@ If you only want to access the completed work, you will find the link to the hos
     * Remove their business
     * Reset password
     * delete account
+## Authentication:
+  * This app makes use of JSON Web Token (JWT) for authenticatio
+  * A token is generated when a user is signed up or signed in, after which the user can access protected endpoints
+  * The token is saved as an environment variable and authentication is done behind the scene 
 ## Technologies
   * Nodejs(ES6)
   * Express
@@ -41,7 +45,7 @@ If you only want to access the completed work, you will find the link to the hos
 ## Test
   Mocha was used as the testing framework with chai assertion library
   * You can run test after installation using <code>npm run test</code>
-  * For continuous integration; you can make use of the ones with their badges at the top of this file. e.g. TravisCI, Coveralls etc <hr>
+  * For continuous integration; you can make use of the ones with their badges at the top of this file. e.g. TravisCI, Coveralls etc
 
 <h3>ENDPOINTS</h3>
 <hr>
@@ -112,6 +116,6 @@ If you only want to access the completed work, you will find the link to the hos
 <br/>
 
 ## Author
-Oloyede Sinmiloluwa <hr>
+Oloyede Sinmiloluwa <br>
 You can access the app here https://weconnect-com.herokuapp.com/
 And you can have access to the API documentation here https://weconnect-com.herokuapp.com/api-docs
