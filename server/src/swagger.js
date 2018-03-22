@@ -17,10 +17,10 @@ module.exports = {
     'https'
   ],
   consumes: [
-    'object', 'application/json'
+    'application/json'
   ],
   produces: [
-    'object', 'application/json'
+    'application/json'
   ],
   paths: {
     '/auth/signup': {
@@ -224,7 +224,7 @@ module.exports = {
           },
           {
             name: 'review',
-            in: 'body',
+            in: 'formData',
             description: 'The review',
             type: 'string'
           }

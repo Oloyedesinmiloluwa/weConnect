@@ -1,13 +1,14 @@
-import chai, { assert, expect } from 'chai';
+import chai, { assert } from 'chai';
 import chaiHttp from 'chai-http';
 import myRoute from '../routes/route';
+import userRoute from '../routes/userRoute';
 
 const should = chai.should();
 chai.use(chaiHttp);
 describe('Test for Business API endpoints', () => {
   describe('/POST User', () => {
     it('It should add new user', (done) => {
-      chai.request(myRoute)
+      chai.request(userRoute)
         .post('/auth/signup')
         .send({
           firstName: 'Grace', lastName: 'Love', email: 'sinmiloluwasunday@yahoo.com', password: 'test'
@@ -19,7 +20,7 @@ describe('Test for Business API endpoints', () => {
         });
     });
     it('It should not add user missing required field', (done) => {
-      chai.request(myRoute)
+      chai.request(userRoute)
         .post('/auth/signup')
         .send({
           lastName: 'Love', email: 'sinmiloluwasunday@yahoo.com', password: 'test'
@@ -31,7 +32,7 @@ describe('Test for Business API endpoints', () => {
         });
     });
     it('It should sign in user', (done) => {
-      chai.request(myRoute)
+      chai.request(userRoute)
         .post('/auth/login')
         .send({
           email: 'sinmiloluwasunday@yahoo.com', password: 'test'
@@ -43,7 +44,7 @@ describe('Test for Business API endpoints', () => {
         });
     });
     it('It should not sign in user with wrong credentials', (done) => {
-      chai.request(myRoute)
+      chai.request(userRoute)
         .post('/auth/login')
         .send({
           email: 'sinmiloluwasunday@yahoo.com', password: 'test ko test ni'
@@ -104,7 +105,16 @@ describe('Test for Business API endpoints', () => {
     });
     it('It should NOT process an invalid Businesses ID', (done) => {
       chai.request(myRoute)
-        .put('/businesses/tuuy')
+        .post('/businesses/tuuy/reviews')
+        .end((err, res) => {
+          res.should.have.status(404);
+          res.body.message.should.be.eql('Invalid ID');
+          done();
+        });
+    });
+    it('It should NOT process a non-existing Businesses ID', (done) => {
+      chai.request(myRoute)
+        .post('/businesses/9000000/reviews')
         .end((err, res) => {
           res.should.have.status(404);
           res.body.message.should.be.eql('Invalid ID');
