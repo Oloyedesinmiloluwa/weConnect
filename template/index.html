@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!-- Bootstrap -->
   <link href="bootstrap-4.0.0-dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
   <link href="main.css" rel="stylesheet" />
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page
@@ -21,18 +22,22 @@ respond.min.js"></script>
 <body>
 
   <div id="homediv">
-    <nav class="navbar navbar-primary justify-content-between">
-      <a id="brand_link" href="index.html" class="navbar-brand text-primary">WeConnect</a>
-      <form class="form-inline">
+      <nav class="navbar navbar-primary">
+          <a id="brand_link" href="index.html" class="navbar-brand text-primary">WeConnect</a>
+        </nav>
+        <h1 id="homeh1" class="text-center"> Welcome to Weconnect!</h1>
+        <h3 class="text-center">We connect businesses with individuals, Register with us</h3>
+    <nav class="navbar navbar-primary justify-content-end">
+      <!-- <a id="brand_link" href="index.html" class="navbar-brand text-primary">WeConnect</a> -->
+      <form id="homeform" class="form-inline">
         <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="search" />
-        <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
-        <a id="home_signin" class="btn btn-outline-primary my-2 my-sm-0" href="signin.html">Sign in</a>
-        <a class="btn btn-outline-primary my-2 my-sm-0" href="signup.html">Sign up</a>
+        <button class="btn btn-primary my-2 my-sm-0" type="submit">Search</button>
+        <a id="home_signin" class="btn btn-primary my-2 my-sm-0" href="signin.html">Sign in</a>
+        <a class="btn btn-primary my-2 my-sm-0" href="signup.html">Sign up</a>
       </form>
     </nav>
-    <h1 id="homeh1" class="text-center"> Welcome to Weconnect!</h1>
-    <h3 class="text-center">We connect businesses with individuals, Register with us</h3>
-  </div>
+  </div><hr>
+  <h4 class="text-center"><a id="home_register_btn1" class="btn btn-outline-primary my-2 my-sm-0" href="register.html">Register business </a> </h3> <hr>
   <h4 class="text-center">Choose a category</h4>
   <div class="container">
     <div id="homerow" class="row mx-auto">
@@ -75,7 +80,6 @@ respond.min.js"></script>
     </div>
   </div>
 
-
   <div class="container">
     <div class="row">
       <h5 id="homeh5"> All Businesses </h5>
@@ -86,10 +90,6 @@ respond.min.js"></script>
           </a>
           <div class="card-body">
             <h5 class="card-title">Andela Farm</h5>
-            <p class="card-text">We as a company buys and sells goods, makes products, or provides services for everybody</p>
-            <p class="card-text">
-              <small class="text-muted">Established since 1960</small>
-            </p>
           </div>
         </div>
         <div class="card">
@@ -97,11 +97,8 @@ respond.min.js"></script>
             <img class="card-img-top" src="images/makeup.jpg" alt="Card image cap">
           </a>
           <div class="card-body">
-            <h5 class="card-title">Fresh Makeup</h5>
-            <p class="card-text">We as a company buys and sells goods, makes products, or provides services for everybody</p>
-            <p class="card-text">
-              <small class="text-muted">Established since 1960</small>
-            </p>
+            <h5 class="card-title">Face World</h5>
+            
           </div>
         </div>
         <div class="card">
@@ -110,10 +107,7 @@ respond.min.js"></script>
           </a>
           <div class="card-body">
             <h5 class="card-title">Donald Farm</h5>
-            <p class="card-text">We as a company buys and sells goods, makes products, or provides services for everybody. We are the Best.</p>
-            <p class="card-text">
-              <small class="text-muted">Established since 1960</small>
-            </p>
+            
           </div>
         </div>
         <div class="card">
@@ -122,10 +116,7 @@ respond.min.js"></script>
           </a>
           <div class="card-body">
             <h5 class="card-title">Spicy Hotel</h5>
-            <p class="card-text">We as a company buys and sells goods, makes products, or provides services for everybody. We are the Best.</p>
-            <p class="card-text">
-              <small class="text-muted">Established since 1960</small>
-            </p>
+            
           </div>
         </div>
       </div>
@@ -138,10 +129,7 @@ respond.min.js"></script>
           </a>
           <div class="card-body">
             <h5 class="card-title">Konga Flowers</h5>
-            <p class="card-text">We as a company buys and sells goods, makes products, or provides services for everybody</p>
-            <p class="card-text">
-              <small class="text-muted">Established since 1960</small>
-            </p>
+            
           </div>
         </div>
         <div class="card">
@@ -149,11 +137,7 @@ respond.min.js"></script>
             <img class="card-img-top" src="images/2.JPG" alt="Card image cap">
           </a>
           <div class="card-body">
-            <h5 class="card-title">Jumia Farm</h5>
-            <p class="card-text">We as a company buys and sells goods, makes products, or provides services for everybody</p>
-            <p class="card-text">
-              <small class="text-muted">Established since 1960</small>
-            </p>
+            <h5 class="card-title">Jumia Farm</h5>            
           </div>
         </div>
         <div class="card">
@@ -162,10 +146,6 @@ respond.min.js"></script>
           </a>
           <div class="card-body">
             <h5 class="card-title">Donald Star Ltd</h5>
-            <p class="card-text">We as a company buys and sells goods, makes products, or provides services for everybody. We are the Best.</p>
-            <p class="card-text">
-              <small class="text-muted">Established since 1960</small>
-            </p>
           </div>
         </div>
         <div class="card">
@@ -174,10 +154,7 @@ respond.min.js"></script>
           </a>
           <div class="card-body">
             <h5 class="card-title">St. Mike Suite</h5>
-            <p class="card-text">We as a company buys and sells goods, makes products, or provides services for everybody. We are the Best.</p>
-            <p class="card-text">
-              <small class="text-muted">Established since 1960</small>
-            </p>
+            
           </div>
         </div>
       </div>
@@ -188,10 +165,11 @@ respond.min.js"></script>
   <script src="https://code.jquery.com/jquery.js"></script>
   <!-- Include all compiled plugins (below), or include individual files as needed -->
   <script src="bootstrap-4.0.0-dist/js/bootstrap.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </body>
-
 </html>
-<footer class="text-white">
-  <a id="footer" href="#">Documentation</a>
+<hr>
+<footer class="text-primary">
+  <a id="footer" href="https://weconnect-com.herokuapp.com/api-docs">Documentation</a>
   Powered&nbsp;by&nbsp;Weconnect&nbsp;Team&nbsp;&copy;2018
 </footer>

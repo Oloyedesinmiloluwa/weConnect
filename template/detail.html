@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!-- Bootstrap -->
   <link href="bootstrap-4.0.0-dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
   <link href="main.css" rel="stylesheet" />
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page
@@ -72,7 +73,7 @@ respond.min.js"></script>
           <div class="form-group row">
             <label for="address" class="col-md-3 col-form-label">Address</label>
             <div class="col-md-9">
-              <p class="col-form-label" id="phone">Lagos express way Jesuloluwa street, Apapa</p>
+              <p class="col-form-label" id="address">Lagos express way Jesuloluwa street, Apapa</p>
             </div>
           </div>
           <div class="form-group row">
@@ -94,21 +95,31 @@ respond.min.js"></script>
             </div>
           </div>
           <div class="form-group row">
-            <label for="sector" class="col-md-3 col-form-label">Website</label>
+            <label for="sector" class="col-md-3 col-form-label">Category</label>
             <div class="col-md-9 col-form-label">
-              <p href="#" id="sector">Agriculture</p>
+              <p id="sector">Agriculture</p>
             </div>
           </div>
-
+          <div class="form-group row">
+              <label for="location" class="col-md-3 col-form-label">Location</label>
+              <div class="col-md-9 col-form-label">
+                <p id="location">Lagos</p>
+              </div>
+            </div>
         </form>
         <h3>Reviews</h3>
-        <h6>Paul</h6>
+        <div class="card">
+        <h6 class="card-header">Paul<i class="fa fa-chevron-right"></i> </h6>
         <p>This is the right place to get your food, I recommed 100%</p>
-        <h6>Peter</h6>
+      </div>
+      <div class="card">
+          <h6 class="card-header">Peter</h6>
         <p>This is the right place to get your food, I recommed 100%</p>
-        <h6>James</h6>
+        </div>
+        <div class="card">
+            <h6 class="card-header">James</h6>
         <p>This is the right place to get your food, I recommed 100%</p>
-
+          </div>
       </div>
       <div class="offset-md-1 col-md-3">
         <h3 class="text-center">Similar businesses</h3>
@@ -152,10 +163,12 @@ respond.min.js"></script>
   <script src="https://code.jquery.com/jquery.js"></script>
   <!-- Include all compiled plugins (below), or include individual files as needed -->
   <script src="bootstrap-4.0.0-dist/js/bootstrap.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </body>
 
 </html>
-<footer class="text-white">
-  <a id="footer" href="#">Documentation</a>
-  Powered&nbsp;by&nbsp;Weconnect&nbsp;Team&nbsp;&copy;2018
-</footer>
+<hr>
+<footer class="text-primary">
+    <a id="footer" href="https://weconnect-com.herokuapp.com/api-docs">Documentation</a>
+    Powered&nbsp;by&nbsp;Weconnect&nbsp;Team&nbsp;&copy;2018
+  </footer>
