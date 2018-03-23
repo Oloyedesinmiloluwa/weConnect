@@ -53,6 +53,9 @@ h1,h2,h3 {
     /* border: solid royalblue; */
     /* width: 80%; */
 }
+.detail_card {
+    width: 15rem;
+}
 div.row {
     padding-top: 10px;
 }
