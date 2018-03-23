@@ -12,7 +12,7 @@
     "build": "babel ./server/src -d ./server/dist",
     "start": "node server/dist/index.js",
     "heroku-postbuild": "npm run build",
-    "coverage": "nyc npm test && nyc report --reporter=lcov | coveralls"
+    "coverage": "nyc npm test && nyc report --reporter=text-lcov | coveralls --reporter=lcov"
   },
   "repository": {
     "type": "git",

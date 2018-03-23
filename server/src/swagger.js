@@ -3,7 +3,7 @@ module.exports = {
   info: {
     version: '1',
     title: 'WEconnect',
-    description: 'WeConnect provides a platform that brings businesses and individuals together. This platform creates awareness for businesses and gives the Users the ability to write reviews about the businesses they have interacted with'
+    description: 'WeConnect provides a platform that brings businesses and individuals together. This platform creates awareness for businesses and gives the Users the ability to write reviews about the businesses they have interacted with. To access to the full features you need to sign up and login'
   },
   host: 'weconnect-com.herokuapp.com',
   basePath: '/api/v1/',
@@ -14,7 +14,7 @@ module.exports = {
     }
   ],
   schemes: [
-    'https'
+    'https','http'
   ],
   consumes: [
     'application/json'
@@ -27,6 +27,7 @@ module.exports = {
       post: {
         tags: ['User'],
         summary: 'Creates an account for a new user',
+        
         parameters:
         [
           {
@@ -46,7 +47,7 @@ module.exports = {
             }
           },
           400: {
-            description: 'Error -Missing required fields'
+            description: 'Error - Missing required fields'
           }
         }
       }
@@ -55,18 +56,19 @@ module.exports = {
       post: {
         tags: ['User'],
         summary: 'Logs a new user in',
+        consumes: ['application/x-www-form-urlencoded'],
         parameters:
         [
           {
             name: 'email',
-            in: 'body',
+            in: 'formData',
             required: true,
             description: 'The email of the user',
             type: 'string'
           },
           {
             name: 'password',
-            in: 'body',
+            in: 'formData',
             required: true,
             description: 'The password of the user',
             type: 'string'
@@ -214,6 +216,7 @@ module.exports = {
           'Businesses'
         ],
         summary: 'Create new review for a business in system',
+        consumes: ['application/x-www-form-urlencoded'],
         parameters: [
           {
             name: 'businessId',
@@ -272,7 +275,7 @@ module.exports = {
   definitions: {
     business: {
       required: [
-        'name'
+        'name','description'
       ],
       properties: {
         name: {
@@ -319,11 +322,11 @@ module.exports = {
       properties: {
         firstName: {
           type: 'string',
-          uniqueItems: true
+          uniqueItems: false
         },
         lastName: {
           type: 'string',
-          uniqueItems: true
+          uniqueItems: false
         },
         email: {
           type: 'string',
@@ -331,7 +334,7 @@ module.exports = {
         },
         password: {
           type: 'string',
-          uniqueItems: true
+          uniqueItems: false
         }
       }
     }
