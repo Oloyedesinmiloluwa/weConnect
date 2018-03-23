@@ -12,7 +12,6 @@ h1,h2,h3 {
 }
 #footer {
     margin-right:30%;
-    /* color:white;*/
 }
 #brand_link {
     font-family: Calibri;
@@ -25,7 +24,8 @@ h1,h2,h3 {
     margin: 0 10px 0 30px;
 }
 #home_register_btn {
-    margin-left: 30px;
+    /* margin-left: 30px; */
+    /* background: rgb(158, 72, 22); */
 }
 #homediv {
     padding:10px;
