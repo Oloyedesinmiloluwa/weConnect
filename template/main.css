@@ -39,6 +39,10 @@ h1,h2,h3 {
 #registerh4 {
     margin-top:30px;
 }
+.hometext {
+    color:white;
+    text-shadow:4px 4px 8px blue;  
+}
 .register_card {
     padding-left: 20px;
     width: 60%;
