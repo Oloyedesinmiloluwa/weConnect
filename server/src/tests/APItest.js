@@ -2,6 +2,7 @@ import chai, { assert } from 'chai';
 import chaiHttp from 'chai-http';
 import dotenv from 'dotenv';
 import myRoute from '../routes/route';
+import userRoute from '../routes/userRoute';
 
 dotenv.config();
 chai.should();
@@ -9,7 +10,7 @@ chai.use(chaiHttp);
 describe('Test for Business API endpoints', () => {
   describe('/POST User', () => {
     it('It should add new user', (done) => {
-      chai.request(myRoute)
+      chai.request(userRoute)
         .post('/auth/signup')
         .send({
           firstName: 'Grace', lastName: 'Love', email: 'sinmi@yahoo.com', password: 'test', notify: true
@@ -21,7 +22,7 @@ describe('Test for Business API endpoints', () => {
         });
     });
     it('It should not add user missing required field', (done) => {
-      chai.request(myRoute)
+      chai.request(userRoute)
         .post('/auth/signup')
         .send({
           lastName: 'Love', email: 'sinmi@yahoo.com', password: 'test'
@@ -33,7 +34,7 @@ describe('Test for Business API endpoints', () => {
         });
     });
     it('It should sign in user', (done) => {
-      chai.request(myRoute)
+      chai.request(userRoute)
         .post('/auth/login')
         .send({
           email:'sinmiloluwasunday@yahoo.com', password: 'tester'
@@ -45,7 +46,7 @@ describe('Test for Business API endpoints', () => {
         });
     });
     it('It should not sign in user with an unexisting username ', (done) => {
-      chai.request(myRoute)
+      chai.request(userRoute)
         .post('/auth/login')
         .send({
           email: '111@yahoo.com', password: 'test'
@@ -57,7 +58,7 @@ describe('Test for Business API endpoints', () => {
         });
     });
     it('It should not sign in user with a wrong password ', (done) => {
-      chai.request(myRoute)
+      chai.request(userRoute)
         .post('/auth/login')
         .send({
           email: 'sinmi@yahoo.com', password: 'testko'
@@ -351,7 +352,7 @@ describe('Test for Business API endpoints', () => {
   });
   describe('RESET PASSWORD', () => {
     it('It should reset user\'s password', (done) => {
-      chai.request(myRoute)
+      chai.request(userRoute)
         .put('/users/1')
         .send({
           newPassword: 'testtest'
@@ -363,7 +364,7 @@ describe('Test for Business API endpoints', () => {
         });
     });
     it('It should not reset password if empty', (done) => {
-      chai.request(myRoute)
+      chai.request(userRoute)
         .put('/users/1')
         .send({
           newPassword: ''
@@ -375,7 +376,7 @@ describe('Test for Business API endpoints', () => {
         });
     });
     it('It should not reset password if undefined', (done) => {
-      chai.request(myRoute)
+      chai.request(userRoute)
         .put('/users/1')
         .send({
         })
@@ -386,7 +387,7 @@ describe('Test for Business API endpoints', () => {
         });
     });
     it('It should not reset password if empty', (done) => {
-      chai.request(myRoute)
+      chai.request(userRoute)
         .put('/users/1')
         .send({
           newPassword: 'testtest'
@@ -400,7 +401,7 @@ describe('Test for Business API endpoints', () => {
   });
   describe('/DELETE User', () => {
     it('It should delete user\'s account', (done) => {
-      chai.request(myRoute)
+      chai.request(userRoute)
         .delete('/users/1')
         .end((err, res) => {
           res.should.have.status(200);
@@ -411,7 +412,7 @@ describe('Test for Business API endpoints', () => {
   });
   describe('/Unauthorized Acess', () => {
     it('It should logout user', (done) => {
-      chai.request(myRoute)
+      chai.request(userRoute)
         .post('/auth/logout')
         .end((err, res) => {
           res.should.have.status(200);
@@ -462,7 +463,7 @@ describe('Test for Business API endpoints', () => {
   // Test for after log out
   describe('/LOG IN User', () => {
     it('It should login another user', (done) => {
-      chai.request(myRoute)
+      chai.request(userRoute)
         .post('/auth/login')
         .send({
           email: 'sinmi@yahoo.com', password: 'test'
@@ -495,7 +496,7 @@ describe('Test for Business API endpoints', () => {
         });
     });
     it('User should not be able to reset another\'s password', (done) => {
-      chai.request(myRoute)
+      chai.request(userRoute)
         .put('/users/2')
         .send({
           newPassword: 'testtest'
@@ -509,7 +510,7 @@ describe('Test for Business API endpoints', () => {
   });
   describe('/GET Users', () => {
     it('It should not get all users if not admin', (done) => {
-      chai.request(myRoute)
+      chai.request(userRoute)
         .get('/users')
         .end((err, res) => {
           res.should.have.status(403);
@@ -518,7 +519,7 @@ describe('Test for Business API endpoints', () => {
         });
     });
      it('It should sign in admin', (done) => {
-      chai.request(myRoute)
+      chai.request(userRoute)
         .post('/auth/login')
         .send({
           email:'admin@weconnect.com', password: 'admin'
@@ -530,7 +531,7 @@ describe('Test for Business API endpoints', () => {
         });
       });
     it('It should get all users if admin', (done) => {
-      chai.request(myRoute)
+      chai.request(userRoute)
         .get('/users')
         .end((err, res) => {
           res.should.have.status(200);
