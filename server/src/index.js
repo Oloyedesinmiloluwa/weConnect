@@ -5,6 +5,7 @@ import logger from 'morgan';
 import dotenv from 'dotenv';
 import swaggerUi from 'swagger-ui-express';
 import route from './routes/route';
+import userRoute from './routes/userRoute';
 import swaggerDocument from './swagger';
 
 const port = parseInt(process.env.PORT, 10) || 8000;
@@ -17,7 +18,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.use('/api/v1/', route);
-// Setup a default catch-all route that sends not found.
+app.use('/api/v1/', userRoute);
+// Setup a default catch-all route that sends back a welcome message in JSON format.
 app.get('*', (req, res) => res.status(404).send({
   message: 'Not Found',
 }));

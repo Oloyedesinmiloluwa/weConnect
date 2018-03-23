@@ -3,7 +3,7 @@ module.exports = {
   info: {
     version: '1',
     title: 'WEconnect',
-    description: 'WeConnect provides a platform that brings businesses and individuals together. This platform creates awareness for businesses and gives the Users the ability to write reviews about the businesses they have interacted with'
+    description: 'WeConnect provides a platform that brings businesses and individuals together. This platform creates awareness for businesses and gives the Users the ability to write reviews about the businesses they have interacted with. This application makes use of token based authentication and Some API Endpoints are protected, you will need to sign up and sign in to access them'
   },
   host: 'weconnect-com.herokuapp.com',
   basePath: '/api/v1/',
@@ -14,13 +14,13 @@ module.exports = {
     }
   ],
   schemes: [
-    'https'
+    'https','http'
   ],
   consumes: [
-    'object', 'application/json'
+    'application/json'
   ],
   produces: [
-    'object', 'application/json'
+    'application/json'
   ],
   paths: {
     '/auth/signup': {
@@ -55,18 +55,19 @@ module.exports = {
       post: {
         tags: ['User'],
         summary: 'Logs a new user in',
+        consumes: ['application/x-www-form-urlencoded'],
         parameters:
         [
           {
             name: 'email',
-            in: 'body',
+            in: 'formData',
             required: true,
             description: 'The email of the user',
             type: 'string'
           },
           {
             name: 'password',
-            in: 'body',
+            in: 'formData',
             required: true,
             description: 'The password of the user',
             type: 'string'
@@ -214,6 +215,7 @@ module.exports = {
           'Businesses'
         ],
         summary: 'Create new review for a business in system',
+        consumes: ['application/x-www-form-urlencoded'],
         parameters: [
           {
             name: 'businessId',
@@ -224,7 +226,7 @@ module.exports = {
           },
           {
             name: 'review',
-            in: 'body',
+            in: 'formData',
             description: 'The review',
             type: 'string'
           }
@@ -272,7 +274,7 @@ module.exports = {
   definitions: {
     business: {
       required: [
-        'name'
+        'name','description'
       ],
       properties: {
         name: {
@@ -319,11 +321,11 @@ module.exports = {
       properties: {
         firstName: {
           type: 'string',
-          uniqueItems: true
+          uniqueItems: false
         },
         lastName: {
           type: 'string',
-          uniqueItems: true
+          uniqueItems: false
         },
         email: {
           type: 'string',
@@ -331,7 +333,12 @@ module.exports = {
         },
         password: {
           type: 'string',
-          uniqueItems: true
+          uniqueItems: false
+        },
+        notify: {
+          type: 'boolean',
+          default: 'false',
+          uniqueItems: false
         }
       }
     }
