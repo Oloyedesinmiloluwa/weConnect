@@ -203,7 +203,6 @@ describe('Test for Business API endpoints', () => {
         })
         .end((err, res) => {
           res.should.have.status(201);
-          // res.body.mailReport.should.be.eql('Email Sent');
           done();
         });
     });
@@ -460,7 +459,6 @@ describe('Test for Business API endpoints', () => {
         });
     });
   });
-  // Test for after log out
   describe('/LOG IN User', () => {
     it('It should login another user', (done) => {
       chai.request(userRoute)

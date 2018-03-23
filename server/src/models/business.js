@@ -18,7 +18,6 @@ module.exports = (sequelize, DataTypes) => {
     image: DataTypes.STRING
   });
   Business.associate = (models) => {
-    // associations can be defined here
     Business.belongsTo(models.User, {
       foreignKey: 'userId',
       onDelete: 'CASCADE',

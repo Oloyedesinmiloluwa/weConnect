@@ -1,4 +1,3 @@
-// import bcrypt from 'bcryptjs';
 const bcrypt = require('bcryptjs');
 
 module.exports = {
@@ -10,7 +9,6 @@ module.exports = {
         email: 'sinmiloluwasunday@yahoo.com',
         notify: true,
         password: bcrypt.hashSync('tester', 8)
-      // isBetaMember: false
       },
       {
         firstName: 'grace',
@@ -18,7 +16,6 @@ module.exports = {
         email: 'love@yahoo.com',
         notify: false,
         password: bcrypt.hashSync('test', 8)
-      // // isBetaMember: false
       },
       {
         firstName: 'admin',
@@ -26,7 +23,6 @@ module.exports = {
         email: 'admin@weconnect.com',
         notify: false,
         password: bcrypt.hashSync('admin', 8)
-      // isBetaMember: false
       }
     ], {});
   },
