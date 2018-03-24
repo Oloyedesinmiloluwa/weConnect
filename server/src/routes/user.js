@@ -1,6 +1,6 @@
 import express from 'express';
 import bodyParser from 'body-parser';
-import appController from '../controllers/userController';
+import appController from '../controllers/user';
 
 const myRoute = express();
 myRoute.use(bodyParser.json());

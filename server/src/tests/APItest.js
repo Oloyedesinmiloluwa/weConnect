@@ -1,7 +1,7 @@
 import chai, { assert } from 'chai';
 import chaiHttp from 'chai-http';
-import myRoute from '../routes/route';
-import userRoute from '../routes/userRoute';
+import myRoute from '../routes/business';
+import userRoute from '../routes/user';
 
 const should = chai.should();
 chai.use(chaiHttp);
@@ -28,6 +28,18 @@ describe('Test for Business API endpoints', () => {
         .end((err, res) => {
           res.should.have.status(400);
           res.body.message.should.be.eql('All fields are required');
+          done();
+        });
+    });
+    it('It should not create account with invalid email', (done) => {
+      chai.request(userRoute)
+        .post('/auth/signup')
+        .send({
+          firstName: 'Grace', lastName: 'Love', email: 'sinmyahoo.com', password: 'test'
+        })
+        .end((err, res) => {
+          res.should.have.status(400);
+          res.body.message.should.be.eql('Invalid email');
           done();
         });
     });

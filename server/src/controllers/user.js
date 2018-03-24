@@ -12,7 +12,10 @@ export default class UsersController {
    */
   static signUp(req, res) {
     if (!req.body.firstName || !req.body.lastName || !req.body.email || !req.body.password) {
-      return res.status(400).send({ message: 'All fields are required' });
+      return res.status(400).json({ message: 'All fields are required' });
+    }
+    if (req.body.email.indexOf('@') === -1 || req.body.email.indexOf('.') === -1) {
+      return res.status(400).json({ message: 'Invalid email' });
     }
     const newUser = {
       id: user[user.length - 1].id + 1,
@@ -22,7 +25,7 @@ export default class UsersController {
       password: req.body.password,
     };
     user.push(newUser);
-    return res.status(201).send({ message: 'Successfully created an account' });
+    return res.status(201).json({ message: 'Successfully created an account' });
   }
   /**
    * This validates the credentials of a user to allow or disallow login.
@@ -33,8 +36,8 @@ export default class UsersController {
   static login(req, res) {
     const item = user.filter(currentUser => currentUser.email === req.body.email);
     if (req.body.password === item[0].password) {
-      return res.status(201).send({ message: 'Successfully logged in' });
+      return res.status(201).json({ message: 'Successfully logged in' });
     }
-    return res.status(401).send({ message: 'Invalid username or password' });
+    return res.status(401).json({ message: 'Invalid username or password' });
   }
 }

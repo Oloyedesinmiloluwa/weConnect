@@ -3,8 +3,8 @@ import bodyParser from 'body-parser';
 import http from 'http';
 import logger from 'morgan';
 import swaggerUi from 'swagger-ui-express';
-import route from './routes/route';
-import userRoute from './routes/userRoute';
+import route from './routes/business';
+import userRoute from './routes/user';
 import swaggerDocument from './swagger';
 
 const port = parseInt(process.env.PORT, 10) || 8000;
