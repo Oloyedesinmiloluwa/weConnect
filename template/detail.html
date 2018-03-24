@@ -7,6 +7,7 @@
   <!-- Bootstrap -->
   <link href="bootstrap-4.0.0-dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <link href="main.css" rel="stylesheet" />
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page
@@ -21,7 +22,7 @@ respond.min.js"></script>
 
 <body>
 
-  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary" >
     <a class="navbar-brand" href="index.html">Weconnect</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
       aria-expanded="false" aria-label="Toggle navigation">
@@ -50,8 +51,8 @@ respond.min.js"></script>
             <a class="dropdown-item " href="index.html">All</a>
           </div>
         </li>
-        <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <li class="nav-item dropdown active">
+            <a class="nav-link dropdown-toggle" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Location
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -75,7 +76,7 @@ respond.min.js"></script>
 
   <div class="container">
     <div class="row">
-      <div class="col-md-8">
+      <div class="col-md-7 col-lg-7">
         <h3>Banana Enterprise Ltd</h3>
         <br>
         <img src="images/banana.jpg">
@@ -123,22 +124,22 @@ respond.min.js"></script>
             </div>
         </form>
         <h3>Reviews</h3>
-        <div class="card">
-        <h6 class="card-header">Paul<i class="fa fa-chevron-right"></i> </h6>
-        <p>This is the right place to get your food, I recommed 100%</p>
+        <div class="card review_card">
+          
+        <h6 class="card-header blue"><img class="review_img" src="images/freeimage.jpg" alt="Card image cap">   Paul   <i class="text-right fa fa-star first"></i><i class="text-right fa fa-star"></i><i class="text-right fa fa-star"></i></h6>
+        <p class="review_text">This is the right place to get your food, I recommed 100%</p>
       </div>
-      <div class="card">
-          <h6 class="card-header">Peter</h6>
-        <p>This is the right place to get your food, I recommed 100%</p>
+      <div class="card review_card">
+          <h6 class="card-header blue"><img class="review_img" src="images/freeimage.jpg" alt="Card image cap">   Peter <i class="text-right fa fa-star first"><i class="text-right fa fa-star"></i></i></h6>
+        <p class="review_text">This is the right place to get your food, I recommed 100%</p>
         </div>
-        <div class="card">
-            <h6 class="card-header">James</h6>
-        <p>This is the right place to get your food, I recommed 100%</p>
+        <div class="card review_card">
+          <h6 class="card-header blue"><img class="review_img" src="images/freeimage.jpg" alt="Card image cap">   James <i class="text-right fa fa-star first"></i></h6>
+        <p class="review_text">This is the right place to get your food, I recommed 100%</p>
           </div>
       </div>
-      <div class="offset-md-1 col-md-3">
-        <h3 class="text-center">Similar businesses</h3>
-        <br>
+      <div id="similar_div" class="offset-md-1 col-md-4 offset-lg-2 col-lg-3"> <br>
+        <h5 id="detail_similar">Similar businesses</h5>
         <div class="card detail_card">
           <img class="card-img-top" src="images/2.JPG" alt="Card image cap">
           <div class="card-body">
@@ -169,8 +170,6 @@ respond.min.js"></script>
       </div>
     </div>
 
-
-  </div>
 
   </div>
 
