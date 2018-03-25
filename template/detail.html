@@ -6,6 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!-- Bootstrap -->
   <link href="bootstrap-4.0.0-dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <link href="main.css" rel="stylesheet" />
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page
@@ -20,7 +22,7 @@ respond.min.js"></script>
 
 <body>
 
-  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary" >
     <a class="navbar-brand" href="index.html">Weconnect</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
       aria-expanded="false" aria-label="Toggle navigation">
@@ -49,6 +51,21 @@ respond.min.js"></script>
             <a class="dropdown-item " href="index.html">All</a>
           </div>
         </li>
+        <li class="nav-item dropdown active">
+            <a class="nav-link dropdown-toggle" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Location
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item " href="index.html?location=lagos">Lagos</a>
+              <a class="dropdown-item " href="index.html?location=jos">Jos</a>
+              <a class="dropdown-item " href="index.html?location=abuja">Abuja</a>
+              <a class="dropdown-item " href="index.html?location=rivers">Rivers</a>
+              <a class="dropdown-item " href="index.html?location=sokoto">Sokoto</a>
+              <a class="dropdown-item " href="index.html?location=oyo">Oyo</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item " href="index.html">All</a>
+            </div>
+          </li>
       </ul>
       <form class="form-inline my-2 my-lg-0">
         <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
@@ -59,7 +76,7 @@ respond.min.js"></script>
 
   <div class="container">
     <div class="row">
-      <div class="col-md-8">
+      <div class="col-md-7 col-lg-7">
         <h3>Banana Enterprise Ltd</h3>
         <br>
         <img src="images/banana.jpg">
@@ -72,7 +89,7 @@ respond.min.js"></script>
           <div class="form-group row">
             <label for="address" class="col-md-3 col-form-label">Address</label>
             <div class="col-md-9">
-              <p class="col-form-label" id="phone">Lagos express way Jesuloluwa street, Apapa</p>
+              <p class="col-form-label" id="address">Lagos express way Jesuloluwa street, Apapa</p>
             </div>
           </div>
           <div class="form-group row">
@@ -94,26 +111,36 @@ respond.min.js"></script>
             </div>
           </div>
           <div class="form-group row">
-            <label for="sector" class="col-md-3 col-form-label">Website</label>
+            <label for="sector" class="col-md-3 col-form-label">Category</label>
             <div class="col-md-9 col-form-label">
-              <p href="#" id="sector">Agriculture</p>
+              <p id="sector">Agriculture</p>
             </div>
           </div>
-
+          <div class="form-group row">
+              <label for="location" class="col-md-3 col-form-label">Location</label>
+              <div class="col-md-9 col-form-label">
+                <p id="location">Lagos</p>
+              </div>
+            </div>
         </form>
         <h3>Reviews</h3>
-        <h6>Paul</h6>
-        <p>This is the right place to get your food, I recommed 100%</p>
-        <h6>Peter</h6>
-        <p>This is the right place to get your food, I recommed 100%</p>
-        <h6>James</h6>
-        <p>This is the right place to get your food, I recommed 100%</p>
-
+        <div class="card review_card">
+          
+        <h6 class="card-header blue"><img class="review_img" src="images/freeimage.jpg" alt="Card image cap">   Paul   <i class="yellow fa fa-star first"></i><i class="yellow fa fa-star"></i><i class="yellow fa fa-star"></i></h6>
+        <p class="review_text">This is the right place to get your food, I recommed 100%</p>
       </div>
-      <div class="offset-md-1 col-md-3">
-        <h3 class="text-center">Similar businesses</h3>
-        <br>
-        <div class="card" style="width: 18rem;">
+      <div class="card review_card">
+          <h6 class="card-header blue"><img class="review_img" src="images/freeimage.jpg" alt="Card image cap">   Peter <i class="yellow fa fa-star first"><i class="yellow fa fa-star"></i></i></h6>
+        <p class="review_text">This is the right place to get your food, I recommed 100%</p>
+        </div>
+        <div class="card review_card">
+          <h6 class="card-header blue"><img class="review_img" src="images/freeimage.jpg" alt="Card image cap">   James <i class="yellow fa fa-star first"></i></h6>
+        <p class="review_text">This is the right place to get your food, I recommed 100%</p>
+          </div>
+      </div>
+      <div id="similar_div" class="offset-md-1 col-md-4 offset-lg-2 col-lg-3"> <br>
+        <h5 id="detail_similar">Similar businesses</h5>
+        <div class="card detail_card">
           <img class="card-img-top" src="images/2.JPG" alt="Card image cap">
           <div class="card-body">
             <h5 class="card-title">Sunnol</h5>
@@ -122,7 +149,7 @@ respond.min.js"></script>
           </div>
         </div>
         <br>
-        <div class="card" style="width: 18rem;">
+        <div class="card detail_card">
           <img class="card-img-top" src="images/4.JPG" alt="Card image cap">
           <div class="card-body">
             <h5 class="card-title">Sunnol</h5>
@@ -131,7 +158,7 @@ respond.min.js"></script>
           </div>
         </div>
         <br>
-        <div class="card" style="width: 18rem;">
+        <div class="card detail_card">
           <img class="card-img-top" src="images/3.JPG" alt="Card image cap">
           <div class="card-body">
             <h5 class="card-title">Sunnol</h5>
@@ -146,16 +173,16 @@ respond.min.js"></script>
 
   </div>
 
-  </div>
-
   <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
   <script src="https://code.jquery.com/jquery.js"></script>
   <!-- Include all compiled plugins (below), or include individual files as needed -->
   <script src="bootstrap-4.0.0-dist/js/bootstrap.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </body>
 
 </html>
-<footer class="text-white">
-  <a id="footer" href="#">Documentation</a>
-  Powered&nbsp;by&nbsp;Weconnect&nbsp;Team&nbsp;&copy;2018
-</footer>
+<hr>
+<footer class="text-primary">
+    <a id="footer" href="https://weconnect-com.herokuapp.com/api-docs">Documentation</a>
+    Powered&nbsp;by&nbsp;Weconnect&nbsp;Team&nbsp;&copy;2018
+  </footer>

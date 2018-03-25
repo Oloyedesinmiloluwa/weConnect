@@ -1,25 +1,46 @@
 h1,h2,h3 {
     color:blue;
 }
+i.yellow {
+    color: rgb(255, 217, 0);
+}
+i.first {
+    margin-left: 90px;
+}
+i.fb {
+    color: blue;
+    margin-right: 5px;
+}
+i.twitter {
+    color: lightblue;
+}
 #homeh1 {
     padding-top: 9%;
 }
 #homerow {
-    width: 50%;
+    width: 60%;
 }
 #homeh5 {
     margin-top:30px;
+    margin-left: 10px;
 }
 #footer {
     margin-right:30%;
-    color:white;
 }
 #brand_link {
     font-family: Calibri;
     font-size:28pt;
 }
+#homeform {
+    margin-top: 5%;
+}
 #home_signin {
     margin: 0 10px 0 30px;
+}
+#home_register_btn_div {
+    background: #237bda;
+    padding: 10px;
+    margin-bottom: 10px;
 }
 #homediv {
     padding:10px;
@@ -27,20 +48,68 @@ h1,h2,h3 {
     background-image:url(images/puzzle.jpg);
     height:450px;
 }
+#detail_similar {
+    color: blue;
+    margin-top: 10px;
+    margin-right: 20px;
+}
+#similar_div {
+    overflow: auto;
+    height: 900px;
+}
 #register_span {
     width: 60%;
 }
 #registerh4 {
-    margin-top:15px;
+    margin-top:30px;
+}
+img.review_img {
+    margin-right: 10px;
+    width: 40px;
+    height: 40px;
+}
+.blue {
+    color: blue;
+}
+.review_card {
+    margin-bottom: 5px;
+}
+.review_text {
+    padding-left: 5px;
+    padding-right: 5px;
+    margin-right: 50px;
+}
+.hometext {
+    color:white;
+    text-shadow:4px 4px 8px blue;  
+}
+.home_card-deck {
+    margin: 10px;
+}
+.register_card {
+    padding-left: 20px;
+    width: 60%;
+}
+.card_custom {
+    padding-bottom: 10px;
+    /* min-height: 80%; */
+    /* border: solid royalblue; */
+    /* width: 80%; */
+}
+.detail_card {
+    width: 15rem;
 }
 div.row {
-    padding-top: 20px;
+    padding-top: 10px;
 }
 button.custom {
     margin: 15px;
     padding: 0px;
     width:100px;
     height: 30px;
+}
+button.register_custom {
+    margin: 10px;
 }
 input.custom {
     border-radius: 5px;
@@ -49,9 +118,8 @@ input.custom {
     background: lightblue;
 }
 footer {
-    outline: solid rgb(144, 144, 216);
     padding: 10px;
-    background: rgb(6, 88, 110);
+    background: white;
     margin-top:40px;
     height:50px;
 }

@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" shrink-to-fit=no">
 <!-- Bootstrap -->
 <link href="bootstrap-4.0.0-dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
     <link href="main.css" rel="stylesheet" />
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!-- WARNING: Respond.js doesn't work if you view the page
@@ -45,6 +46,21 @@ respond.min.js"></script>
             <a class="dropdown-item " href="index.html">All</a>
           </div>
         </li>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Location
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item " href="index.html?location=lagos">Lagos</a>
+              <a class="dropdown-item " href="index.html?location=jos">Jos</a>
+              <a class="dropdown-item " href="index.html?location=abuja">Abuja</a>
+              <a class="dropdown-item " href="index.html?location=rivers">Rivers</a>
+              <a class="dropdown-item " href="index.html?location=sokoto">Sokoto</a>
+              <a class="dropdown-item " href="index.html?location=oyo">Oyo</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item " href="index.html">All</a>
+            </div>
+          </li>
       </ul>
       <form class="form-inline my-2 my-lg-0">
         <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
@@ -52,26 +68,23 @@ respond.min.js"></script>
       </form>
     </div>
   </nav>
-
+  <div class="bg-light card_custom">
   <h1 class="text-center" id="homeh1"> Welcome to Weconnect!</h1>
   <h6 class="text-center">Please provide your login details</h6>
 
   <div class="container">
     <div class="row">
-
-    </div>
-
-    <div class=" mx-auto" id="homerow">
+    <div class="mx-auto" id="homerow">
       <form>
         <div class="form-group row">
           <label for="inputEmail3" class="col-md-2 col-form-label">Email</label>
-          <div class="col-md-10">
+          <div class="col-md-8">
             <input type="email" class="form-control" id="inputEmail3" placeholder="Email">
           </div>
         </div>
         <div class="form-group row">
           <label for="inputPassword3" class="col-md-2 col-form-label">Password</label>
-          <div class="col-md-10">
+          <div class="col-md-8">
             <input type="password" class="form-control" id="inputPassword3" placeholder="Password">
           </div>
         </div>
@@ -98,16 +111,19 @@ respond.min.js"></script>
         </div>
       </form>
     </div>
-
   </div>
-
+  </div>
+  </div>
   <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
   <script src="https://code.jquery.com/jquery.js"></script>
   <!-- Include all compiled plugins (below), or include individual files as needed -->
   <script src="bootstrap-4.0.0-dist/js/bootstrap.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </body>
+<hr>
 </html>
-<footer class="text-white">
-  <a id="footer" href="#">Documentation</a>
-  Powered&nbsp;by&nbsp;Weconnect&nbsp;Team&nbsp;&copy;2018
-</footer>
+
+<footer class="text-primary">
+    <a id="footer" href="https://weconnect-com.herokuapp.com/api-docs">Documentation</a>
+    Powered&nbsp;by&nbsp;Weconnect&nbsp;Team&nbsp;&copy;2018
+  </footer>
