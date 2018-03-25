@@ -1,7 +1,6 @@
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
 import db from '../models/index';
-import sendMail from '../middlewares/mail';
 
 /**
  * Class representing the controller for the application.
@@ -15,15 +14,20 @@ export default class appController {
    */
   static signUp(req, res) {
     const hashedPassword = bcrypt.hashSync(req.body.password, 8);
+    let emailNotify = false;
     if (!req.body.firstName || !req.body.lastName || !req.body.email || !req.body.password) {
-      return res.status(400).send({ message: 'All fields are required' });
+      return res.status(400).json({ message: 'All fields are required' });
     }
+    if (req.body.email.indexOf('@') === -1 || req.body.email.indexOf('.') === -1) {
+      return res.status(400).json({ message: 'Invalid email address' });
+    }
+    if (req.body.notify === 'True' || req.body.notify === 'true') emailNotify = true;
     return db.User
       .create({
         firstName: req.body.firstName,
         lastName: req.body.lastName,
         email: req.body.email,
-        notify: req.body.notify || false,
+        notify: emailNotify,
         password: hashedPassword,
         profilePicture: req.body.profilePicture || '',
       })
@@ -35,9 +39,9 @@ export default class appController {
           id, email, firstName, lastName
         }, process.env.secret_key, { expiresIn: '1h' });
         process.env.token = token;
-        return res.status(201).send({ message: 'Successfully created an account' });
+        return res.status(201).json({ message: 'Successfully created an account' });
       })
-      .catch(error => (res.status(400).send(error)));
+      .catch(error => (res.status(400).json(error)));
   }
   /**
    * This validates the credentials of a user to allow or disallow login.
@@ -54,7 +58,7 @@ export default class appController {
       })
       .then((user) => {
         if (!user) {
-          res.status(401).send({ message: 'Invalid username' });
+          res.status(401).json({ message: 'Invalid username' });
         }
         bcrypt
           .compare(req.body.password, user.password)
@@ -67,13 +71,13 @@ export default class appController {
                 id, email, firstName, lastName
               }, process.env.secret_key, { expiresIn: '1h' });
               process.env.token = token;
-              return res.status(201).send({ message: 'Successfully logged in' });
+              return res.status(201).json({ message: 'Successfully logged in' });
             }
-            return res.status(401).send({ message: 'Invalid Password' });
+            return res.status(401).json({ message: 'Invalid Password' });
           })
-          .catch(error => res.status(404).send(error.message));
+          .catch(error => res.status(404).json(error.message));
       })
-      .catch(error => res.status(400).send(error.message));
+      .catch(error => res.status(400).json(error.message));
   }
   /**
    * This password of a user.
@@ -82,23 +86,23 @@ export default class appController {
    * @returns {Object} success or failure message
    */
   static resetPassword(req, res) {
-    if (req.body.newPassword === '' || req.body.newPassword === undefined) return res.status(400).send({ message: 'Password must have a value' });
+    if (req.body.newPassword === '' || req.body.newPassword === undefined) return res.status(400).json({ message: 'Password must have a value' });
     return db.User
       .findById(req.params.userId)
       .then((user) => {
         if (!user) {
-          return res.status(404).send({
+          return res.status(404).json({
             message: 'Invalid ID',
           });
         }
-        if (req.body.newPassword === user.password) return res.status(400).send({ message: 'Password must be new' });
-        if (user.email !== req.decoded.email) return res.status(403).send({ message: 'Unauthorized User' });
+        if (req.body.newPassword === user.password) return res.status(400).json({ message: 'Password must be new' });
+        if (user.email !== req.decoded.email) return res.status(403).json({ message: 'Unauthorized User' });
         return user
           .update({ password: req.body.newPassword })
-          .then(() => res.status(200).send({ message: 'Password successfully changed' }))
-          .catch(error => res.status(400).send(error));
+          .then(() => res.status(200).json({ message: 'Password successfully changed' }))
+          .catch(error => res.status(400).json(error));
       })
-      .catch(error => res.status(400).send(error));
+      .catch(error => res.status(400).json(error));
   }
   /**
    * This destroys an existing user.
@@ -111,17 +115,17 @@ export default class appController {
       .findById(req.params.userId)
       .then((user) => {
         if (!user) {
-          return res.status(404).send({
+          return res.status(404).json({
             message: 'Invalid ID',
           });
         }
-        if (user.email !== req.decoded.email) return res.status(403).send('Unauthorized User');
+        if (user.email !== req.decoded.email) return res.status(403).json('Unauthorized User');
         return user
           .destroy()
-          .then(() => res.status(200).send({ message: 'Account Deleted Successfully' }))
-          .catch(error => res.status(400).send(error));
+          .then(() => res.status(200).json({ message: 'Account Deleted Successfully' }))
+          .catch(error => res.status(400).json(error));
       })
-      .catch(error => res.status(400).send(error));
+      .catch(error => res.status(400).json(error));
   }
   /**
    * This gets all users.
@@ -130,10 +134,10 @@ export default class appController {
    * @returns {Array} nothing after deletion
    */
   static getUsers(req, res) {
-    if (req.decoded.email !== 'admin@weconnect.com') return res.status(403).send({ message: 'Unauthorized User'});
+    if (req.decoded.email !== 'admin@weconnect.com') return res.status(403).json({ message: 'Unauthorized User'});
     return db.User
       .all()
-      .then(users => res.status(200).send(users))
-      .catch(error => res.status(400).send(error));
+      .then(users => res.status(200).json(users))
+      .catch(error => res.status(400).json(error));
   }
 }

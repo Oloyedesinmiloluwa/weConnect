@@ -1,6 +1,6 @@
 import express from 'express';
 import bodyParser from 'body-parser';
-import appController from '../controllers/controller';
+import appController from '../controllers/business';
 import authWare from '../middlewares/auth';
 
 const myRoute = express();

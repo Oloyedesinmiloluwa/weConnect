@@ -1,8 +1,8 @@
 import chai, { assert } from 'chai';
 import chaiHttp from 'chai-http';
 import dotenv from 'dotenv';
-import myRoute from '../routes/route';
-import userRoute from '../routes/userRoute';
+import myRoute from '../routes/business';
+import userRoute from '../routes/user';
 
 dotenv.config();
 chai.should();
@@ -30,6 +30,18 @@ describe('Test for Business API endpoints', () => {
         .end((err, res) => {
           res.should.have.status(400);
           res.body.message.should.be.eql('All fields are required');
+          done();
+        });
+    });
+    it('It should not create user with invalid email', (done) => {
+      chai.request(userRoute)
+        .post('/auth/signup')
+        .send({
+          firstName: 'Grace', lastName: 'Love', email: 'sinmiyahoo.com', password: 'test'
+        })
+        .end((err, res) => {
+          res.should.have.status(400);
+          res.body.message.should.be.eql('Invalid email address');
           done();
         });
     });
