@@ -47,7 +47,6 @@ export default class appController {
    * @returns {Object} business
    */
   static getOne(req, res) {
-    // Tests if the business requested exists
     if (appController.selectBusiness(req) === null) return res.status(404).send({ message: 'Invalid ID' });
     res.status(200).send(appController.selectBusiness(req));
   }
@@ -58,9 +57,6 @@ export default class appController {
    * @returns {Object} added business
    */
   static post(req, res) {
-    if (req.body.name === undefined || req.body.description === undefined) {
-      return res.status(400).send({ message: 'Business name and description required' });
-    }
     const business = {
       id: data[data.length - 1].id + 1,
       name: req.body.name,
@@ -110,10 +106,11 @@ export default class appController {
    * @returns {Object} updated business
    */
   static update(req, res) {
-    // Tests if the business requested exists first
     if (appController.selectBusiness(req) === null) return res.status(404).send({ message: 'Invalid ID' });
-    const item = appController.selectBusiness(req);
-    Object.assign(item, req.body);
+    const item = appController.selectBusiness(req);    
+    Object.keys(item).forEach((property) => {
+      item[property] = req.body[property] || item[property];
+    });
     res.status(200).send(item);
   }
   /**
@@ -123,7 +120,6 @@ export default class appController {
    * @returns {null} nothing after deletion
    */
   static delete(req, res) {
-    // Tests if the business requested exists
     if (appController.selectBusiness(req) === null) return res.status(404).send({ message: 'Invalid ID' });
     data.splice(appController.formatParamId, 1);
     return res.sendStatus(204);
