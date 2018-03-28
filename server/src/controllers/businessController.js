@@ -4,7 +4,7 @@ import sendMail from '../middlewares/mail';
 /**
  * Class representing the controller for the application.
  */
-export default class appController {
+export default class businessController {
   /**
    * This formats req.params.id to an integer
    * @param {Object} req - client request Object
@@ -13,7 +13,7 @@ export default class appController {
    */
   static formatParamId(req, res) {
     const id = parseInt(req.params.businessId, 10);
-    if (!id) return res.status(404).json({ message: 'Invalid ID' });
+    if (!id || id < 0 || id !== Number(req.params.businessId)) return res.status(400).json({ message: 'Invalid ID' });
     return id;
   }
   /**
@@ -29,7 +29,7 @@ export default class appController {
           where: { category: req.query.category },
         })
         .then(businesses => res.status(200).json(businesses))
-        .catch(error => res.status(400).json(error));
+        .catch(error => res.status(500).json(error));
     }
     if (req.query.location) {
       return db.Business
@@ -37,12 +37,12 @@ export default class appController {
           where: { location: req.query.location },
         })
         .then(businesses => res.status(200).json(businesses))
-        .catch(error => res.status(400).json(error));
+        .catch(error => res.status(500).json(error));
     }
     return db.Business
       .all()
       .then(businesses => res.status(200).json(businesses))
-      .catch(error => res.status(400).json(error));
+      .catch(error => res.status(500).json(error));
   }
   /**
    * This method gets a single business.
@@ -52,16 +52,16 @@ export default class appController {
    */
   static getOne(req, res) {
     return db.Business
-      .findById(appController.formatParamId(req, res))
+      .findById(businessController.formatParamId(req, res))
       .then((business) => {
         if (!business) {
           return res.status(404).json({
-            message: 'Invalid ID',
+            message: 'Business Not Found',
           });
         }
         return res.status(200).json(business);
       })
-      .catch(error => res.status(400).json(error));
+      .catch(error => res.status(500).json(error));
   }
   /**
    * This adds a business to the database.
@@ -70,9 +70,6 @@ export default class appController {
    * @returns {Object} added business
    */
   static post(req, res) {
-    if (req.body.name === undefined || req.body.description === undefined) {
-      return res.status(400).json({ message: 'Business name and description required' });
-    }
     return db.Business.create({
       name: req.body.name,
       description: req.body.description,
@@ -89,7 +86,7 @@ export default class appController {
         res.setHeader('Location', `businesses/${business.id}`);
         res.status(201).json(business);
       })
-      .catch(error => res.status(400).json(error));
+      .catch(error => res.status(500).json(error));
   }
   /**
    * This posts review to a business.
@@ -101,11 +98,11 @@ export default class appController {
     const mailStatus = 'Email not sent';
     if (req.body.review === '' || req.body.review === undefined) return res.status(400).json({ message: 'Review field cannot be empty' });
     return db.Business
-      .findById(appController.formatParamId(req, res))
+      .findById(businessController.formatParamId(req, res))
       .then((business) => {
         if (!business) {
           return res.status(404).json({
-            message: 'Invalid ID',
+            message: 'Business Not Found',
           });
         }
         business.review.push(req.body.review);
@@ -125,12 +122,12 @@ export default class appController {
                   sendMail(mailOptions);
                 }
               })
-              .catch(error => res.status(400).json(error));
+              .catch(error => res.status(500).json(error));
             res.status(201).json({ business, mailReport: mailStatus });
           })
-          .catch(error => res.status(400).json(error));
+          .catch(error => res.status(500).json(error));
       })
-      .catch(error => res.status(400).json(error));
+      .catch(error => res.status(500).json(error));
   }
   /**
    * This gets all reviews for a business
@@ -140,16 +137,16 @@ export default class appController {
    */
   static getReviews(req, res) {
     return db.Business
-      .findById(appController.formatParamId(req, res))
+      .findById(businessController.formatParamId(req, res))
       .then((business) => {
         if (!business) {
           return res.status(404).json({
-            message: 'Invalid ID',
+            message: 'Business Not Found',
           });
         }
         return res.status(200).json(business.review);
       })
-      .catch(error => res.status(400).json(error));
+      .catch(error => res.status(500).json(error));
   }
   /**
    * This updates an existing business
@@ -160,11 +157,11 @@ export default class appController {
   static update(req, res) {
     if (req.body.review) return res.status(400).json({ message: 'pls remove review from request body' });
     return db.Business
-      .findById(appController.formatParamId(req, res))
+      .findById(businessController.formatParamId(req, res))
       .then((business) => {
         if (!business) {
           return res.status(404).json({
-            message: 'Invalid ID',
+            message: 'Business Not Found',
           });
         }
         if (business.userId !== req.decoded.id) return res.status(403).json({ message: 'Unauthorized User' });
@@ -173,9 +170,9 @@ export default class appController {
           .then(() => {
             res.status(200).json(business);
           })
-          .catch(error => res.status(400).json(error));
+          .catch(error => res.status(500).json(error));
       })
-      .catch(error => res.status(400).json(error));
+      .catch(error => res.status(500).json(error));
   }
   /**
    * This destroys an existing business.
@@ -185,19 +182,19 @@ export default class appController {
    */
   static delete(req, res) {
     return db.Business
-      .findById(appController.formatParamId(req, res))
+      .findById(businessController.formatParamId(req, res))
       .then((business) => {
         if (!business) {
           return res.status(404).json({
-            message: 'Invalid ID',
+            message: 'Business Not Found',
           });
         }
         if (business.userId !== req.decoded.id) return res.status(403).json('Unauthorized User');
         return business
           .destroy()
-          .then(() => res.sendStatus(204))
-          .catch(error => res.status(400).json(error));
+          .then(() => res.status(200).json({ message: 'Business successfully deleted' }))
+          .catch(error => res.status(500).json(error));
       })
-      .catch(error => res.status(400).json(error));
+      .catch(error => res.status(500).json(error));
   }
 }

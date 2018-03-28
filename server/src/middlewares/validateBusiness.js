@@ -4,7 +4,7 @@ import { isString } from 'util';
 /**
  * Class representing the validator for the application.
  */
-export default class InputValidator {
+export default class validateBusiness {
   /**
    * This validates a new business if it is in the right format.
    * @param {Object} req - client request Object
@@ -13,7 +13,7 @@ export default class InputValidator {
    * @returns {Object} suceess or failure
    */
   static post(req, res, next) {
-    if (req.body.name === undefined || req.body.description === undefined) {
+    if (!req.body.name || !req.body.description) {
       return res.status(400).json({ message: 'Business name and description required' });
     }
     const keys = Object.keys(req.body);

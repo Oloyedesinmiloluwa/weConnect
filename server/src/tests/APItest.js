@@ -1,8 +1,8 @@
 import chai, { assert } from 'chai';
 import chaiHttp from 'chai-http';
 import dotenv from 'dotenv';
-import myRoute from '../routes/business';
-import userRoute from '../routes/user';
+import businessRoute from '../routes/businessRoute';
+import userRoute from '../routes/userRoute';
 
 dotenv.config();
 chai.should();
@@ -25,7 +25,7 @@ describe('Test for Business API endpoints', () => {
       chai.request(userRoute)
         .post('/auth/signup')
         .send({
-          lastName: 'Love', email: 'sinmi@yahoo.com', password: 'test'
+          lastName: 'Love', firstName: '', email: 'sinmi@yahoo.com', password: 'test'
         })
         .end((err, res) => {
           res.should.have.status(400);
@@ -84,7 +84,7 @@ describe('Test for Business API endpoints', () => {
   });
   describe('/POST Business', () => {
     it('It should register Business', (done) => {
-      chai.request(myRoute)
+      chai.request(businessRoute)
         .post('/businesses')
         .send({
           name: 'my business',
@@ -101,7 +101,7 @@ describe('Test for Business API endpoints', () => {
         });
     });
     it('It should register another Business', (done) => {
-      chai.request(myRoute)
+      chai.request(businessRoute)
         .post('/businesses')
         .send({
           name: 'second business',
@@ -118,9 +118,10 @@ describe('Test for Business API endpoints', () => {
         });
     });
     it('It should not register Business if missing name', (done) => {
-      chai.request(myRoute)
+      chai.request(businessRoute)
         .post('/businesses')
         .send({
+          name: '',
           description: 'we are good',
           address: 'lagos, lagos state',
           location: 'Lagos',
@@ -134,10 +135,11 @@ describe('Test for Business API endpoints', () => {
         });
     });
     it('It should not register Business if missing description', (done) => {
-      chai.request(myRoute)
+      chai.request(businessRoute)
         .post('/businesses')
         .send({
           name: 'Trump Tower',
+          description: '',
           address: 'lagos, lagos state',
           location: 'Lagos',
           category: 'Agriculture',
@@ -152,7 +154,7 @@ describe('Test for Business API endpoints', () => {
   });
   describe('/POST Review', () => {
     it('It should post review for a Business', (done) => {
-      chai.request(myRoute)
+      chai.request(businessRoute)
         .post('/businesses/1/reviews')
         .send({
           review: 'this is very great',
@@ -164,19 +166,19 @@ describe('Test for Business API endpoints', () => {
         });
     });
     it('It should NOT process an invalid Businesses ID', (done) => {
-      chai.request(myRoute)
+      chai.request(businessRoute)
         .post('/businesses/tuuy/reviews')
         .send({
           review: 'this is very great',
         })
         .end((err, res) => {
-          res.should.have.status(404);
+          res.should.have.status(400);
           res.body.message.should.be.eql('Invalid ID');
           done();
         });
     });
     it('It should NOT process an empty review field', (done) => {
-      chai.request(myRoute)
+      chai.request(businessRoute)
         .post('/businesses/1/reviews')
         .send({
           review: ''
@@ -188,7 +190,7 @@ describe('Test for Business API endpoints', () => {
         });
     });
     it('It should NOT process a review field that is undefined', (done) => {
-      chai.request(myRoute)
+      chai.request(businessRoute)
         .post('/businesses/1/reviews')
         .send({
         })
@@ -199,7 +201,7 @@ describe('Test for Business API endpoints', () => {
         });
     });
     it('It should not send email to user if not requested', (done) => {
-      chai.request(myRoute)
+      chai.request(businessRoute)
         .post('/businesses/1/reviews')
         .send({
           review: 'never contact me'
@@ -211,7 +213,7 @@ describe('Test for Business API endpoints', () => {
         });
     });
     it('It should send email to user if requested', (done) => {
-      chai.request(myRoute)
+      chai.request(businessRoute)
         .post('/businesses/1/reviews')
         .send({
           review: 'please contact me'
@@ -224,7 +226,7 @@ describe('Test for Business API endpoints', () => {
   });
   describe('/GET Business', () => {
     it('It should get all Businesses', (done) => {
-      chai.request(myRoute)
+      chai.request(businessRoute)
         .get('/businesses')
         .end((err, res) => {
           res.should.have.status(200);
@@ -233,7 +235,7 @@ describe('Test for Business API endpoints', () => {
         });
     });
     it('It should get only Businesses in a chosen location', (done) => {
-      chai.request(myRoute)
+      chai.request(businessRoute)
         .get('/businesses?location=Lagos')
         .end((err, res) => {
           res.should.have.status(200);
@@ -244,7 +246,7 @@ describe('Test for Business API endpoints', () => {
         });
     });
     it('It should get only Businesses in a chosen category', (done) => {
-      chai.request(myRoute)
+      chai.request(businessRoute)
         .get('/businesses?category=Agriculture')
         .end((err, res) => {
           res.should.have.status(200);
@@ -255,7 +257,7 @@ describe('Test for Business API endpoints', () => {
         });
     });
     it('It should get reviews of a Business', (done) => {
-      chai.request(myRoute)
+      chai.request(businessRoute)
         .get('/businesses/1/reviews')
         .end((err, res) => {
           res.should.have.status(200);
@@ -264,7 +266,7 @@ describe('Test for Business API endpoints', () => {
         });
     });
     it('It should get a single Business', (done) => {
-      chai.request(myRoute)
+      chai.request(businessRoute)
         .get('/businesses/1')
         .end((err, res) => {
           res.should.have.status(200);
@@ -274,17 +276,27 @@ describe('Test for Business API endpoints', () => {
         });
     });
     it('It should return Not found for an invalid Id', (done) => {
-      chai.request(myRoute)
+      chai.request(businessRoute)
         .get('/businesses/900000')
         .end((err, res) => {
           res.should.have.status(404);
+          res.body.message.should.eql('Business Not Found');
+          done();
+        });
+    });
+    it('It should NOT process an invalid Businesses ID', (done) => {
+      chai.request(businessRoute)
+        .get('/businesses/tuuy')
+        .end((err, res) => {
+          res.should.have.status(400);
+          res.body.message.should.be.eql('Invalid ID');
           done();
         });
     });
   });
   describe('/PUT Business', () => {
     it('It should update a Business', (done) => {
-      chai.request(myRoute)
+      chai.request(businessRoute)
         .put('/businesses/1')
         .send({
           name: 'our business',
@@ -296,20 +308,20 @@ describe('Test for Business API endpoints', () => {
         });
     });
     it('It should NOT process an invalid Businesses ID', (done) => {
-      chai.request(myRoute)
+      chai.request(businessRoute)
         .put('/businesses/tuuy')
         .send({
           name: 'our business',
           address: 'Ajah, lagos state',
         })
         .end((err, res) => {
-          res.should.have.status(404);
+          res.should.have.status(400);
           res.body.message.should.be.eql('Invalid ID');
           done();
         });
     });
     it('It should NOT process a non-existing Businesses ID', (done) => {
-      chai.request(myRoute)
+      chai.request(businessRoute)
         .put('/businesses/9000000')
         .send({
           name: 'our business',
@@ -317,12 +329,12 @@ describe('Test for Business API endpoints', () => {
         })
         .end((err, res) => {
           res.should.have.status(404);
-          res.body.message.should.be.eql('Invalid ID');
+          res.body.message.should.be.eql('Business Not Found');
           done();
         });
     });
     it('It should NOT update if review field is present', (done) => {
-      chai.request(myRoute)
+      chai.request(businessRoute)
         .put('/businesses/1')
         .send({
           name: 'our business',
@@ -338,27 +350,28 @@ describe('Test for Business API endpoints', () => {
   });
   describe('/delete Business', () => {
     it('It should delete an existing Business', (done) => {
-      chai.request(myRoute)
+      chai.request(businessRoute)
         .delete('/businesses/1')
         .end((err, res) => {
-          res.should.have.status(204);
+          res.should.have.status(200);
+          res.body.message.should.be.eql('Business successfully deleted');
           done();
         });
     });
     it('It should NOT process a non-existing Business ID', (done) => {
-      chai.request(myRoute)
+      chai.request(businessRoute)
         .delete('/businesses/900000')
         .end((err, res) => {
           res.should.have.status(404);
-          res.body.message.should.be.eql('Invalid ID');
+          res.body.message.should.be.eql('Business Not Found');
           done();
         });
     });
     it('It should NOT process a negative valued Business ID', (done) => {
-      chai.request(myRoute)
+      chai.request(businessRoute)
         .delete('/businesses/-900000')
         .end((err, res) => {
-          res.should.have.status(404);
+          res.should.have.status(400);
           res.body.message.should.be.eql('Invalid ID');
           done();
         });
@@ -435,7 +448,7 @@ describe('Test for Business API endpoints', () => {
         });
     });
     it('It should not register Business if not authenticated', (done) => {
-      chai.request(myRoute)
+      chai.request(businessRoute)
         .post('/businesses')
         .send({
           name: 'last business',
@@ -452,7 +465,7 @@ describe('Test for Business API endpoints', () => {
         });
     });
     it('Should not delete Business if not authenticated', (done) => {
-      chai.request(myRoute)
+      chai.request(businessRoute)
         .delete('/businesses/2')
         .end((err, res) => {
           res.should.have.status(401);
@@ -461,7 +474,7 @@ describe('Test for Business API endpoints', () => {
         });
     });
     it('Should not update Business if not authenticated', (done) => {
-      chai.request(myRoute)
+      chai.request(businessRoute)
         .put('/businesses/2')
         .send({
           name: 'our business',
@@ -488,7 +501,7 @@ describe('Test for Business API endpoints', () => {
         });
     });
     it('non-author should not be able to delete business', (done) => {
-      chai.request(myRoute)
+      chai.request(businessRoute)
         .delete('/businesses/2')
         .end((err, res) => {
           res.should.have.status(403);
@@ -496,7 +509,7 @@ describe('Test for Business API endpoints', () => {
         });
     });
     it('User should not be able to update another\'s Business', (done) => {
-      chai.request(myRoute)
+      chai.request(businessRoute)
         .put('/businesses/2')
         .send({
           name: 'our business',

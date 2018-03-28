@@ -3,7 +3,7 @@ import validator from 'validator';
 /**
  * Class representing the validator for the application.
  */
-export default class InputValidator {
+export default class validateUser {
 /**
    * This validates new account details
    * @param {Object} req - client request Object
