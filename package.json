@@ -35,9 +35,10 @@
     "nodemailer": "^4.6.3",
     "pg": "^7.4.1",
     "pg-hstore": "^2.3.2",
-    "sequelize": "^4.35.5",
+    "sequelize": "^4.37.4",
     "sequelize-cli": "^3.0.0",
-    "swagger-ui-express": "^2.0.15"
+    "swagger-ui-express": "^2.0.15",
+    "validator": "^9.4.1"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
