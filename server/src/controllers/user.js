@@ -15,12 +15,7 @@ export default class appController {
   static signUp(req, res) {
     const hashedPassword = bcrypt.hashSync(req.body.password, 8);
     let emailNotify = false;
-    if (!req.body.firstName || !req.body.lastName || !req.body.email || !req.body.password) {
-      return res.status(400).json({ message: 'All fields are required' });
-    }
-    if (req.body.email.indexOf('@') === -1 || req.body.email.indexOf('.') === -1) {
-      return res.status(400).json({ message: 'Invalid email address' });
-    }
+    
     if (req.body.notify === 'True' || req.body.notify === 'true') emailNotify = true;
     return db.User
       .create({
@@ -86,7 +81,6 @@ export default class appController {
    * @returns {Object} success or failure message
    */
   static resetPassword(req, res) {
-    if (req.body.newPassword === '' || req.body.newPassword === undefined) return res.status(400).json({ message: 'Password must have a value' });
     return db.User
       .findById(req.params.userId)
       .then((user) => {

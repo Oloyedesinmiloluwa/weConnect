@@ -165,7 +165,10 @@ describe('Test for Business API endpoints', () => {
     });
     it('It should NOT process an invalid Businesses ID', (done) => {
       chai.request(myRoute)
-        .put('/businesses/tuuy')
+        .post('/businesses/tuuy/reviews')
+        .send({
+          review: 'this is very great',
+        })
         .end((err, res) => {
           res.should.have.status(404);
           res.body.message.should.be.eql('Invalid ID');
