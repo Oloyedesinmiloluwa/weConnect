@@ -23,8 +23,8 @@ const getBusinessTest = () => {
         .end((err, res) => {
           res.should.have.status(200);
           assert.isArray(res.body, 'The response is type Array');
-          assert.equal(res.body[0].location, 'Lagos');
-          assert.notEqual(res.body[1].location, 'Oyo');
+          assert.equal(res.body[0].location, 'lagos');
+          assert.notEqual(res.body[1].location, 'oyo');
           done();
         });
     });
@@ -34,8 +34,8 @@ const getBusinessTest = () => {
         .end((err, res) => {
           res.should.have.status(200);
           assert.isArray(res.body, 'The response is type Array');
-          assert.equal(res.body[0].category, 'Agriculture');
-          assert.notEqual(res.body[1].category, 'Education');
+          assert.equal(res.body[0].category, 'agriculture');
+          assert.notEqual(res.body[1].category, 'education');
           done();
         });
     });

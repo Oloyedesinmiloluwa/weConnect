@@ -26,7 +26,7 @@ export default class businessController {
     if (req.query.category) {
       return db.Business
         .findAll({
-          where: { category: req.query.category },
+          where: { category: req.query.category.toLowerCase() },
         })
         .then(businesses => res.status(200).json(businesses))
         .catch(error => res.status(500).json(error));
@@ -34,7 +34,7 @@ export default class businessController {
     if (req.query.location) {
       return db.Business
         .findAll({
-          where: { location: req.query.location },
+          where: { location: req.query.location.toLowerCase() },
         })
         .then(businesses => res.status(200).json(businesses))
         .catch(error => res.status(500).json(error));
@@ -70,6 +70,8 @@ export default class businessController {
    * @returns {Object} added business
    */
   static post(req, res) {
+    if (req.body.location) req.body.location = req.body.location.toLowerCase();
+    if (req.body.category) req.body.category = req.body.category.toLowerCase();
     return db.Business.create({
       name: req.body.name,
       description: req.body.description,

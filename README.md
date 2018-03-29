@@ -31,6 +31,10 @@ If you only want to access the completed work, you will find the link to the hos
     * Remove their business
     * Reset password
     * delete account
+* More Features
+    * user can reset password
+    * user can receive email notification
+    * admin can get all users
 ## Authentication:
   * This app makes use of JSON Web Token (JWT) for authenticatio
   * A token is generated when a user is signed up or signed in, after which the user can access protected endpoints
