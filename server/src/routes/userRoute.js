@@ -1,6 +1,6 @@
 import express from 'express';
 import bodyParser from 'body-parser';
-import appController from '../controllers/user';
+import userController from '../controllers/userController';
 import authWare from '../middlewares/auth';
 import inputValidator from '../middlewares/validateUser';
 
@@ -8,17 +8,17 @@ const myRoute = express();
 myRoute.use(bodyParser.json());
 myRoute.use(bodyParser.urlencoded({ extended: false }));
 myRoute.route('/auth/signup')
-  .post(inputValidator.signUp, appController.signUp);
+  .post(inputValidator.signUp, userController.signUp);
 
 myRoute.route('/auth/login')
-  .post(appController.login);
+  .post(userController.login);
 
 myRoute.route('/users')
-  .get(authWare, appController.getUsers);
+  .get(authWare, userController.getUsers);
 
 myRoute.route('/users/:userId')
-  .put(authWare, inputValidator.resetPassword, appController.resetPassword)
-  .delete(authWare, appController.deleteUser);
+  .put(authWare, inputValidator.resetPassword, userController.resetPassword)
+  .delete(authWare, userController.deleteUser);
 
 myRoute.route('/auth/logout')
   .post((req, res) => {

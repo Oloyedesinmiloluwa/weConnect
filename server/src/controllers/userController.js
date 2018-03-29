@@ -5,7 +5,7 @@ import db from '../models/index';
 /**
  * Class representing the controller for the application.
  */
-export default class appController {
+export default class userController {
 /**
    * This creates a new account for a user
    * @param {Object} req - client request Object
@@ -36,7 +36,7 @@ export default class appController {
         process.env.token = token;
         return res.status(201).json({ message: 'Successfully created an account' });
       })
-      .catch(error => (res.status(400).json(error)));
+      .catch(error => (res.status(500).json(error)));
   }
   /**
    * This validates the credentials of a user to allow or disallow login.
@@ -70,9 +70,9 @@ export default class appController {
             }
             return res.status(401).json({ message: 'Invalid Password' });
           })
-          .catch(error => res.status(404).json(error.message));
+          .catch(error => res.status(500).json(error.message));
       })
-      .catch(error => res.status(400).json(error.message));
+      .catch(error => res.status(500).json(error.message));
   }
   /**
    * This password of a user.
@@ -94,9 +94,9 @@ export default class appController {
         return user
           .update({ password: req.body.newPassword })
           .then(() => res.status(200).json({ message: 'Password successfully changed' }))
-          .catch(error => res.status(400).json(error));
+          .catch(error => res.status(500).json(error));
       })
-      .catch(error => res.status(400).json(error));
+      .catch(error => res.status(500).json(error));
   }
   /**
    * This destroys an existing user.
@@ -117,9 +117,9 @@ export default class appController {
         return user
           .destroy()
           .then(() => res.status(200).json({ message: 'Account Deleted Successfully' }))
-          .catch(error => res.status(400).json(error));
+          .catch(error => res.status(500).json(error));
       })
-      .catch(error => res.status(400).json(error));
+      .catch(error => res.status(500).json(error));
   }
   /**
    * This gets all users.
@@ -132,6 +132,6 @@ export default class appController {
     return db.User
       .all()
       .then(users => res.status(200).json(users))
-      .catch(error => res.status(400).json(error));
+      .catch(error => res.status(500).json(error));
   }
 }
