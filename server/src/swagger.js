@@ -100,6 +100,12 @@ module.exports = {
             schema: {
               $ref: '#/definitions/business'
             }
+          },
+          {
+            name: 'x-access-token',
+            in: 'header',
+            description: 'The access token',
+            type: 'string'
           }
         ],
         responses: {
@@ -172,6 +178,14 @@ module.exports = {
       },
       delete: {
         summary: 'Deletes the business with the given ID',
+        parameters: [
+          {
+            name: 'x-access-token',
+            in: 'header',
+            description: 'The access token',
+            type: 'string'
+          }
+        ],
         tags: [
           'Businesses'
         ],
@@ -197,6 +211,12 @@ module.exports = {
             schema: {
               $ref: '#/definitions/business'
             }
+          },
+          {
+            name: 'x-access-token',
+            in: 'header',
+            description: 'The access token',
+            type: 'string'
           }
         ],
         responses: {

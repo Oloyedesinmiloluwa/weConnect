@@ -33,8 +33,8 @@ export default class userController {
         const token = jwt.sign({
           id, email, firstName, lastName
         }, process.env.secret_key, { expiresIn: '1h' });
-        process.env.token = token;
-        return res.status(201).json({ message: 'Successfully created an account' });
+        if (process.env.NODE_ENV === "test") process.env.token = token;
+        return res.status(201).json({ message: 'Successfully created an account', token });
       })
       .catch(error => (res.status(500).json(error)));
   }
@@ -65,8 +65,8 @@ export default class userController {
               const token = jwt.sign({
                 id, email, firstName, lastName
               }, process.env.secret_key, { expiresIn: '1h' });
-              process.env.token = token;
-              return res.status(201).json({ message: 'Successfully logged in' });
+              if (process.env.NODE_ENV === "test") process.env.token = token;
+              return res.status(201).json({ message: 'Successfully logged in', token });
             }
             return res.status(401).json({ message: 'Invalid Password' });
           })
