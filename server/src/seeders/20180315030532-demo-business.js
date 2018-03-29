@@ -3,11 +3,11 @@ module.exports = {
     return queryInterface.bulkInsert('Businesses', [{
       name: 'John Farm',
       phone: '080666666',
-      email: 'y@ya.co.uk',
+      email: 'yamary@yahoo.com',
       description: 'we sell dog',
       userId: 1,
-      location: 'Lagos',
-      category: 'Agriculture',
+      location: 'lagos',
+      category: 'agriculture',
       review: ['hi'],
       address: 'los angeles'
     }], {});

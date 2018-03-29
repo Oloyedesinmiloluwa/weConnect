@@ -130,7 +130,7 @@ export default class userController {
   static getUsers(req, res) {
     if (req.decoded.email !== 'admin@weconnect.com') return res.status(403).json({ message: 'Unauthorized User'});
     return db.User
-      .all()
+      .all({ attributes: ['email', 'firstName','lastName','id'] })
       .then(users => res.status(200).json(users))
       .catch(error => res.status(500).json(error));
   }
