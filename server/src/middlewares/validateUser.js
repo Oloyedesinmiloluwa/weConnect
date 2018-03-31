@@ -1,9 +1,10 @@
 import validator from 'validator';
+import { isString } from 'util';
 
 /**
  * Class representing the validator for the application.
  */
-export default class InputValidator {
+export default class validateUser {
 /**
    * This validates new account details
    * @param {Object} req - client request Object
@@ -15,6 +16,10 @@ export default class InputValidator {
     if (!req.body.firstName || !req.body.lastName || !req.body.email || !req.body.password) {
       return res.status(400).json({ message: 'All fields are required' });
     }
+    const keys = Object.keys(req.body);
+    keys.forEach((key) => {
+      if (!isString(req.body[key])) return res.status(400).json({ message: `Invalid Format for ${key} field` });
+    });
     if (req.body.email.indexOf('@') === -1 || req.body.email.indexOf('.') === -1) {
       return res.status(400).json({ message: 'Invalid email address' });
     }
@@ -24,11 +29,11 @@ export default class InputValidator {
         test = test.replace(' ', '');
       }
       if (!validator.isAlpha(test)) {
-        return res.status(400).json({ message: 'User name can only contain space & alphanumeric characters' });
+        return res.status(400).json({ message: 'First name can only contain space & alphanumeric characters' });
       }
     }
     if (!validator.isAlpha(req.body.firstName)) {
-      return res.status(400).json({ message: 'User name can only contain space & alphanumeric characters' });
+      return res.status(400).json({ message: 'First name can only contain space & alphanumeric characters' });
     }
     if (req.body.lastName && req.body.lastName.indexOf(' ') !== -1) {
       let test = req.body.lastName;
@@ -36,11 +41,11 @@ export default class InputValidator {
         test = test.replace(' ', '');
       }
       if (!validator.isAlpha(test)) {
-        return res.status(400).json({ message: 'User name can only contain space & alphanumeric characters' });
+        return res.status(400).json({ message: 'First name can only contain space & alphanumeric characters' });
       }
     }
     if (!validator.isAlpha(req.body.lastName)) {
-      return res.status(400).json({ message: 'User name can only contain space & alphanumeric characters' });
+      return res.status(400).json({ message: 'First name can only contain space & alphanumeric characters' });
     }
     next();
   }
