@@ -55,7 +55,7 @@ const postBusinessTest = () => {
         })
         .end((err, res) => {
           res.should.have.status(400);
-          res.body.message.should.be.eql('Business name and description required');
+          res.body.message.should.be.eql('Business name required');
           done();
         });
     });
@@ -72,7 +72,7 @@ const postBusinessTest = () => {
         })
         .end((err, res) => {
           res.should.have.status(400);
-          res.body.message.should.be.eql('Business name and description required');
+          res.body.message.should.be.eql('Business description required');
           done();
         });
     });
