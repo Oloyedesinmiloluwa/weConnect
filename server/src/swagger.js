@@ -356,8 +356,8 @@ module.exports = {
           uniqueItems: false
         },
         notify: {
-          type: 'boolean',
-          default: false,
+          type: 'string',
+          default: 'false',
           uniqueItems: false
         }
       }

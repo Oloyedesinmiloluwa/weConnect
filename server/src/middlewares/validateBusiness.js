@@ -13,8 +13,11 @@ export default class validateBusiness {
    * @returns {Object} suceess or failure
    */
   static post(req, res, next) {
-    if (!req.body.name || !req.body.description) {
-      return res.status(400).json({ message: 'Business name and description required' });
+    if (!req.body.name) {
+      return res.status(400).json({ message: 'Business name required' });
+    }
+    if (!req.body.description) {
+      return res.status(400).json({ message: 'Business description required' });
     }
     const keys = Object.keys(req.body);
     keys.forEach((key) => {

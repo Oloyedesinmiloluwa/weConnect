@@ -1,3 +1,4 @@
+import validator from 'validator';
 import db from '../models/index';
 import sendMail from '../middlewares/mail';
 
@@ -24,6 +25,7 @@ export default class businessController {
    */
   static getAll(req, res) {
     if (req.query.category) {
+      req.query.category = validator.trim(req.query.category);
       return db.Business
         .findAll({
           where: { category: req.query.category.toLowerCase() },

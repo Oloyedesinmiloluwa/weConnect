@@ -15,7 +15,6 @@ export default class userController {
   static signUp(req, res) {
     const hashedPassword = bcrypt.hashSync(req.body.password, 8);
     let emailNotify = false;
-    
     if (req.body.notify === 'True' || req.body.notify === 'true') emailNotify = true;
     return db.User
       .create({
@@ -33,7 +32,7 @@ export default class userController {
         const token = jwt.sign({
           id, email, firstName, lastName
         }, process.env.secret_key, { expiresIn: '1h' });
-        if (process.env.NODE_ENV === "test") process.env.token = token;
+        if (process.env.NODE_ENV === 'test') process.env.token = token;
         return res.status(201).json({ message: 'Successfully created an account', token });
       })
       .catch(error => (res.status(500).json(error)));
@@ -65,7 +64,7 @@ export default class userController {
               const token = jwt.sign({
                 id, email, firstName, lastName
               }, process.env.secret_key, { expiresIn: '1h' });
-              if (process.env.NODE_ENV === "test") process.env.token = token;
+              if (process.env.NODE_ENV === 'test') process.env.token = token;
               return res.status(201).json({ message: 'Successfully logged in', token });
             }
             return res.status(401).json({ message: 'Invalid Password' });
@@ -128,9 +127,9 @@ export default class userController {
    * @returns {Array} nothing after deletion
    */
   static getUsers(req, res) {
-    if (req.decoded.email !== 'admin@weconnect.com') return res.status(403).json({ message: 'Unauthorized User'});
+    if (req.decoded.email !== 'admin@weconnect.com') return res.status(403).json({ message: 'Unauthorized User' });
     return db.User
-      .all({ attributes: ['email', 'firstName','lastName','id'] })
+      .all({ attributes: ['email', 'firstName', 'lastName', 'id'] })
       .then(users => res.status(200).json(users))
       .catch(error => res.status(500).json(error));
   }

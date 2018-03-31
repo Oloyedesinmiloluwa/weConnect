@@ -13,7 +13,7 @@ const userTest = () => {
       chai.request(userRoute)
         .post('/auth/signup')
         .send({
-          firstName: 'Grace', lastName: 'Love', email: 'sinmi@yahoo.com', password: 'test', notify: true
+          firstName: 'Grace', lastName: 'Love', email: 'sinmi@yahoo.com', password: 'test', notify: 'true'
         })
         .end((err, res) => {
           res.should.have.status(201);
