@@ -26,6 +26,10 @@
   },
   "homepage": "https://github.com/Oloyedesinmiloluwa/weConnect#readme",
   "dependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.4",
+    "babel-preset-react": "^6.24.1",
+    "babel-register": "^6.26.0",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.2",
     "chai": "^4.1.2",
@@ -38,10 +42,16 @@
     "nodemailer": "^4.6.3",
     "pg": "^7.4.1",
     "pg-hstore": "^2.3.2",
+    "react": "^15.3.2",
+    "react-dom": "^15.3.2",
+    "react-router": "^2.6.1",
+    "react-router-dom": "^4.2.2",
     "sequelize": "^4.37.4",
     "sequelize-cli": "^3.0.0",
     "swagger-ui-express": "^2.0.15",
-    "validator": "^9.4.1"
+    "validator": "^9.4.1",
+    "webpack": "^4.3.0",
+    "webpack-dev-middleware": "^3.1.0"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
@@ -53,7 +63,6 @@
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-react": "^7.7.0",
     "nodemon": "^1.17.1",
-    "nyc": "^11.4.1",
-    "webpack": "^4.3.0"
+    "nyc": "^11.4.1"
   }
 }
