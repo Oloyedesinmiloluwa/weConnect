@@ -5,3 +5,4 @@ import App from './components/app';
 import routes from './components/routes';
 
 render(<Router history={browserHistory} routes={routes} />, document.getElementById('reactApp'));
+// render(<App />, document.getElementById('reactApp'));

@@ -5,7 +5,7 @@ import Navigation from './navigation';
 import signup from './signUp';
 
 export default (
-  <Route path="/" component={Navigation} >
+  <Route path="/api/v1/" component={Navigation} >
     <IndexRoute component={App} />
     <Route path="signup" component={signup} />
   </Route>

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router';
 /**
  * This represents Layout component
  */
@@ -11,7 +12,7 @@ export default class Navigation extends Component {
     return (
       <div>
         <nav className="navbar navbar-expand-lg navbar-dark bg-primary" >
-          <a className="navbar-brand" href="index.html">Weconnect</a>
+          <Link className="navbar-brand" to="/index.html">Weconnect</Link>
           <button
             className="navbar-toggler"
             type="button"
@@ -27,38 +28,38 @@ export default class Navigation extends Component {
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav mr-auto">
               <li className="nav-item">
-                <a className="nav-link" href="index.html">Home
-                </a>
+                <Link className="nav-link" to="/index.html">Home
+                </Link>
               </li>
               <li className="nav-item dropdown active">
-                <a className="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <Link to="/" className="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   <span className="sr-only">(current)</span>
             Category
-                </a>
+                </Link>
                 <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <a className="dropdown-item " href="index.html?category=agriculture">Agriculture</a>
-                  <a className="dropdown-item " href="index.html?category=technology">Technology</a>
-                  <a className="dropdown-item " href="index.html?category=commerce">Commerce</a>
-                  <a className="dropdown-item " href="index.html?category=health">Health</a>
-                  <a className="dropdown-item " href="index.html?category=engineering">Engineering</a>
-                  <a className="dropdown-item " href="index.html?category=fashion">Fashion</a>
+                  <Link className="dropdown-item " to="/index.html?category=agriculture">Agriculture</Link>
+                  <Link className="dropdown-item " to="/index.html?category=technology">Technology</Link>
+                  <Link className="dropdown-item " to="/index.html?category=commerce">Commerce</Link>
+                  <Link className="dropdown-item " to="/index.html?category=health">Health</Link>
+                  <Link className="dropdown-item " to="/index.html?category=engineering">Engineering</Link>
+                  <Link className="dropdown-item " to="/index.html?category=fashion">Fashion</Link>
                   <div className="dropdown-divider" />
-                  <a className="dropdown-item " href="index.html">All</a>
+                  <Link className="dropdown-item " to="/index.html">All</Link>
                 </div>
               </li>
               <li className="nav-item dropdown active">
-                <a className="nav-link dropdown-toggle" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <Link to="/" className="nav-link dropdown-toggle" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Location
-                </a>
+                </Link>
                 <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <a className="dropdown-item " href="index.html?location=lagos">Lagos</a>
-                  <a className="dropdown-item " href="index.html?location=jos">Jos</a>
-                  <a className="dropdown-item " href="index.html?location=abuja">Abuja</a>
-                  <a className="dropdown-item " href="index.html?location=rivers">Rivers</a>
-                  <a className="dropdown-item " href="index.html?location=sokoto">Sokoto</a>
-                  <a className="dropdown-item " href="index.html?location=oyo">Oyo</a>
+                  <Link className="dropdown-item " to="/index.html?location=lagos">Lagos</Link>
+                  <Link className="dropdown-item " to="/index.html?location=jos">Jos</Link>
+                  <Link className="dropdown-item " to="/index.html?location=abuja">Abuja</Link>
+                  <Link className="dropdown-item " to="/index.html?location=rivers">Rivers</Link>
+                  <Link className="dropdown-item " to="/index.html?location=sokoto">Sokoto</Link>
+                  <Link className="dropdown-item " to="/index.html?location=oyo">Oyo</Link>
                   <div className="dropdown-divider" />
-                  <a className="dropdown-item " href="index.html">All</a>
+                  <Link className="dropdown-item " to="/index.html">All</Link>
                 </div>
               </li>
             </ul>
@@ -73,7 +74,7 @@ export default class Navigation extends Component {
         </div>
         <hr />
         <footer className="text-primary">
-    <a id="footer" href="https://weconnect-com.herokuapp.com/api-docs">Documentation</a>
+    <Link id="footer" to="/https://weconnect-com.herokuapp.com/api-docs">Documentation</Link>
   Powered&nbsp;by&nbsp;Weconnect&nbsp;Team&nbsp;&copy;2018
   </footer>
       </div>
