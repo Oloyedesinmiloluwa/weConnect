@@ -36,9 +36,8 @@ If you only want to access the completed work, you will find the link to the hos
     * user can receive email notification
     * admin can get all users
 ## Authentication:
-  * This app makes use of JSON Web Token (JWT) for authenticatio
+  * This app makes use of JSON Web Token (JWT) for authentication
   * A token is generated when a user is signed up or signed in, after which the user can access protected endpoints
-  * The token is saved as an environment variable and authentication is done behind the scene 
 ## Technologies
   * Nodejs(ES6)
   * Express
