@@ -7,11 +7,13 @@ import swaggerUi from 'swagger-ui-express';
 import businessRoute from './routes/businessRoute';
 import userRoute from './routes/userRoute';
 import swaggerDocument from './swagger';
+import cors from 'cors';
 
 const port = parseInt(process.env.PORT, 10) || 8000;
 const app = express();
 app.use(logger('dev'));
 app.use(bodyParser.json());
+app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.use('/api/v1/', businessRoute);
